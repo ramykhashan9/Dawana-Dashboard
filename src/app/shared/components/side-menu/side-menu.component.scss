@@ -1,0 +1,259 @@
+.sidenav {
+    background: #1E2337;
+    transition: all 0.5s ease;
+
+    top: 0;
+    width: 0px;
+    min-height:  100vh;
+   max-height:  auto;
+    box-shadow: 0.063rem 0 1.25rem 0 #8690a3;
+
+    .logo-container {
+        height: 200px;
+
+        align-items: center;
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+        display: flex;
+ 
+
+
+    }
+    .img{
+          text-align: center;
+    }
+}
+
+.sidenav-collapsed {
+    width: auto;
+    
+}
+
+.sidenav-nav {
+    list-style: none;
+    padding: 0.938rem;
+    display: flex;
+    margin: 0;
+    flex-direction: column;
+    align-items: center;
+
+    cursor: pointer;
+
+
+    .sidenav-nav-item {
+        width: 100%;
+        margin-bottom: 2px;
+
+
+
+        .sidenav-nav-link {
+            display: flex;
+            align-items: center;
+            height: 3rem;
+            border-radius: 2px;
+            text-decoration: none;
+            transition: color .3s ease;
+            color: #f3f3f3;
+
+            .sidenav-link-icon {
+                font-size: 22px;
+                width: 2rem;
+                min-width: 2rem;
+                margin: 0 0.5rem;
+                text-align: center;
+            }
+
+            .sidenav-link-text {
+                margin-left: .8rem;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+
+            }
+        }
+
+
+
+
+    }
+
+    .sidenav-nav-item:hover {
+        .sidenav-nav-link {
+            background-color: #fff;
+            color: #000;
+            border-radius: 2px;
+        }
+
+
+        .menu-collapse-icon {
+            color: #000;
+        }
+    }
+}
+
+.active {
+    background-color: #fff;
+
+    .sidenav-link-text,
+    .menu-collapse-icon,
+    .sidenav-link-icon {
+        color: #000;
+    }
+}
+
+.menu-collapse-icon {
+    font-size: 20px;
+    width: 2rem;
+    min-width: 2rem;
+    margin: auto 0.5rem auto auto;
+    text-align: center;
+    color: #f3f3f3;
+}
+
+.sublevel-nav {
+    list-style: none;
+    margin-left: 10px;
+
+    .sublevel-nav-item {
+        .sublevel-nav-link {
+            display: flex;
+            align-items: center;
+            height: 3rem;
+            color: #898989;
+            text-decoration: none;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+
+            .sublevel-link-icon {
+                font-size: 4px;
+                width: 2rem;
+                min-width: 2rem;
+                margin: 0 0.5rem;
+                text-align: center;
+            }
+
+            .sublevel-link-text {
+                margin-left: 0.8rem;
+            }
+        }
+
+        .sublevel-nav-link:hover {
+            color: #f3f3f3;
+        }
+    }
+}
+
+
+.active-sublevel {
+    color: #fff !important;
+
+    opacity: 1 !important;
+}
+
+.scrollwarp {
+    overflow-y: auto;
+    visibility: hidden;
+    height: calc(100% - 3.65rem);
+}
+
+.sidenav-nav,
+.scrollwarp:hover,
+.scrollwarp:focus {
+    visibility: visible;
+
+}
+
+.scrollwarp_delayed {
+    transition: visibility 0.5s 0.2s;
+
+}
+
+.scrollwarp_delayed:hover {
+    transition: visibility 0.2s 0.2s;
+
+}
+
+.scrollwarp::-webkit-scrollbar {
+    width: 10px;
+}
+
+.scrollwarp::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.scrollwarp::-webkit-scrollbar-thumb {
+    background-color: #556268;
+    border-radius: 20px;
+}
+
+.scrollwarp {
+    scrollbar-width: thin;
+    scrollbar-color: #556268;
+}
+
+.log-out {
+    width: 100%;
+    margin-bottom: 2px;
+    color: #fff;
+    font-size: 22px;
+    width: 2rem;
+    min-width: 2rem;
+    margin: 0 0.5rem;
+    text-align: center;
+}
+
+.sidenav-nav {
+    list-style: none;
+    padding: 0.938rem;
+    display: flex;
+    margin: 0;
+    flex-direction: column;
+    align-items: center;
+
+    cursor: pointer;
+
+
+    .sidenav-nav-item {
+        width: 100%;
+        margin-bottom: 2px;
+
+
+
+        .logout {
+            display: flex;
+            align-items: center;
+            height: 3rem;
+            border-radius: 2px;
+            text-decoration: none;
+            transition: color .3s ease;
+            color: #f3f3f3;
+
+            .sidenav-link-icon {
+                font-size: 22px;
+                width: 2rem;
+                min-width: 2rem;
+                margin: 0 0.5rem;
+                text-align: center;
+            }
+
+            .sidenav-link-text {
+                margin-left: .8rem;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+
+            }
+        }
+
+    }
+
+    .sidenav-nav-item:hover {
+        .logout {
+            background-color: #fff;
+            color: #000;
+        }
+
+
+    }
+}

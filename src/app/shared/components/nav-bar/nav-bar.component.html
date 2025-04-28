@@ -1,0 +1,40 @@
+<nav class="navbar navbar-expand bg-body-tertiary" [dir]="dir">
+  <div class="container-fluid">
+    <form class="d-flex" role="search">
+      <ng-template [ngIf]="!collapseSideMenu">
+        <a (click)="taggleSidMenu()"><i class="pi pi-bars pt-2 px-2"></i></a>
+        </ng-template>
+      <!-- <input class="form-control me-2" type="search" [placeholder]="'SEARCH'|translate" aria-label="Search"> -->
+      <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
+    </form>
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <div style="margin:0px 20px;">
+     
+        <img src="assets/notification.png" width="25px" alt="" height="25px">
+      </div>
+      <!-- <li *ngIf="type != 'admin'"  class="nav-item">
+       
+        <img src="assets/admin.jpg" style="border-radius: 50px;" height="25px" width="25px" alt="" /> {{ name }}
+       
+      </li> -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="assets/admin.jpg" style="border-radius: 50px;" height="25px" width="25px" alt="" /> {{ name }}
+        </a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" role="button" (click)="changePassword()">{{'ChangePassword'|translate}} </a></li>
+        
+          
+        </ul>
+      </li>
+
+    </ul>
+    <ng-template [ngIf]="!collapseActivity">
+      <a  (click)="taggleActivity()"  class="mx-2">
+        <i class="pi pi-address-book p-1 fs-5 "></i>
+        
+              </a>
+     </ng-template>
+
+  </div>
+</nav>

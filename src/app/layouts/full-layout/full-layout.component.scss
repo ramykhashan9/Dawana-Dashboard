@@ -1,0 +1,98 @@
+// .row-container {
+//     width: 100%;
+//     min-height: 100vh;
+//     background-color: #f0eded;
+// }
+
+// .side {
+//     width: 6.5625rem;
+//     background-color: #f0eded;
+// }.side-collapsed {
+//     width: 16.5625rem;
+//     background-color: #f0eded;
+// }
+
+// .content {
+//    padding: 10px 10px 10px 10px;
+//    overflow-y: auto;
+
+// }
+
+// .activity {
+//     width: 16.5625rem;    
+// }
+
+// .main-content {
+//      height: 100%;
+//      margin-top: 10px;
+// }
+
+// .header {
+//    height:10%;
+//    width: 50%;
+//    position: fixed;
+// }
+
+
+
+
+
+.layout-container {
+    display: flex;
+    max-height:  100vh;
+}
+
+
+.menu {
+    width: 250px;
+    background-color: #f4f4f4;
+}.menu-activity {
+    width: 250px;
+    background-color: #f4f4f4;
+}
+
+.menu-close {
+    width: 0px;
+    background-color: #f4f4f4;
+}
+
+.main-content {
+    flex-grow: 1;
+    background-color: #f4f4f4;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+mat-sidenav-container{
+    width: 100vw;
+  //  min-height: 100%;
+    height: 100vh;
+}
+mat-sidenav-content{
+   position: relative;
+   z-index: 10000000000000000000000000000000000;
+}
+p-toast{
+    position: absolute;
+    z-index: 1000000000000000000000000000000000000000000000;
+}
+mat-sidenav{
+    width: auto;
+   // padding: 16px;
+}
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+  a:hover{
+    background-color: rgb(235, 235, 235);
+    border-radius: 2px;
+}
+a{
+    color: #000;
+}
+.nav-item .dropdown{
+    list-style: none !important;
+    
+}
+

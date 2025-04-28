@@ -1,0 +1,60 @@
+<div class="login">
+    <div class="row h-100 " style="height: 100%; width: 100%;">
+        <p-toast position="top-right" key="tr"></p-toast>
+
+        <div class="col-md-6 p-0">
+
+            <img src="assets/login.png" class="login-img">
+
+        </div>
+        <div class="col  text-center m-5">
+            <div class="img ">
+                <img src="assets/logo.png" alt="" style=" width:70%;" class="text-center">
+            </div>
+            <h2 class="text-end">{{'Welcome'|translate}}</h2>
+            <form [formGroup]="loginGroup">
+                <div class="form mt-5 mb-3">
+                    <!-- E-Mail -->
+
+                    <div class="row d-flex justify-content-center bg-transparent">
+                        <div [ngClass]=" isEmailValid? 'input-group mb-3 shadow-sm p-0 rounded': 'input-group mb-3 shadow-sm p-0 rounded input-invalid' " style="width: 70%; ">
+                            <span class="input-group-text pl-20"
+                                style="background-color: white; border-right-color: white;"><span
+                                    class="pi pi-envelope fs-5"></span></span>
+                            <input type="text" class="form-control" [placeholder]="'E-mail'|translate"
+                                aria-label="Email" aria-describedby="basic-addon1"
+                                style="padding-left:0px ;border-left-color: white;" formControlName="email">
+                        </div>
+                    </div>
+                    <!-- End E-Mail -->
+
+
+                    <!-- Password -->
+                    <div class="row d-flex justify-content-center text-center">
+                        <div [ngClass]=" isPasswordValid? 'input-group mb-3 shadow-sm p-0 rounded': 'input-group mb-3 shadow-sm p-0 rounded input-invalid' " style="width: 70%;  ">
+                            <span class="input-group-text pl-20"
+                                style="background-color: white; border-right-color: white;"><span
+                                    class="pi pi-lock fs-5"></span></span>
+                            <input [type]='isShowPassword?"text":"password"' class="form-control" [placeholder]="'Password'|translate"
+                                aria-label="Password" aria-describedby="basic-addon1" formControlName="password"
+                                style="padding-left:0px ;border-left-color: white;border-right-color: white;">
+                          <a (click)="showPassword()">  <span class="input-group-text pl-20"
+                                style="background-color: white; border-left-color: white;"><span [class]='
+                                isShowPassword?"pi pi-eye-slash fs-5":"pi pi-eye fs-5"'></span></span></a>
+                        </div>
+                    </div>
+                    <!-- End Password -->
+                    <!-- <div class="row d-flex justify-content-center text-center">
+                    <div style="width: 70%; text-align: end; padding: 0;">
+                        <a href="#" class=" d-block">forgot your password?</a>
+                    </div>
+                </div> -->
+
+                </div>
+            </form>
+
+            <button class="btn px-5 mt-3 mb-5" (click)="login()"
+                style="background-color: #1E2337; color: white;">{{'Login'|translate}}</button>
+
+        </div>
+    </div>

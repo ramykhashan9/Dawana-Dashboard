@@ -1,0 +1,88 @@
+
+import { CalendarModule } from 'primeng/calendar';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DialogService } from 'primeng/dynamicdialog';
+import { MessageService } from 'primeng/api';
+import { TableModule } from 'primeng/table';
+import { SidebarModule } from 'primeng/sidebar';
+import { NgxEditorModule } from 'ngx-editor';
+import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { DropdownModule } from 'primeng/dropdown';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { AutoCompleteModule } from 'primeng/autocomplete';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { PagesRoutingModule } from './pages-routing.module';
+import { CardModule } from 'primeng/card';
+import { EditorModule } from 'primeng/editor';
+import { InputTextModule } from 'primeng/inputtext';
+import { PasswordModule } from 'primeng/password';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { ToastModule } from 'primeng/toast';
+import { CarouselModule } from 'primeng/carousel';
+import { GalleriaModule } from 'primeng/galleria';
+import { ImageModule } from 'primeng/image';
+import { FileUploadModule } from 'primeng/fileupload';
+import {NgxImageCompressService} from 'ngx-image-compress';
+import { PaginatorModule } from 'primeng/paginator';
+import { SharedModule } from '../shared/shared.module';
+ export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
+
+@NgModule({
+  declarations: [
+   ],
+  imports: [
+    SharedModule,
+    CommonModule,
+    PagesRoutingModule,
+    CalendarModule,
+    FormsModule,
+    ReactiveFormsModule,
+    TableModule,
+    SidebarModule,
+    ButtonModule,
+    DialogModule,
+    EditorModule,
+    CardModule,
+    CalendarModule,
+    DynamicDialogModule,
+    DropdownModule,
+    AutoCompleteModule,
+    InputTextModule,
+    InputTextareaModule,
+    PasswordModule,
+    MultiSelectModule,
+    CarouselModule,
+    GalleriaModule,
+    ImageModule,
+    ToastModule,
+    PaginatorModule,
+    FileUploadModule,
+    TranslateModule.forRoot(
+      {
+        defaultLanguage: 'ar',
+        loader: {
+          provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient]
+        }
+      }
+    )
+    , NgxEditorModule
+
+  ],
+
+  exports: [
+
+  ],
+
+  providers: [DialogService, MessageService,NgxImageCompressService]
+})
+export class PagesModule { }

@@ -1,0 +1,98 @@
+<!-- <div class="layout-container" [dir]="'rtl'">
+  <app-side-menu [ngClass]="collappeSideMenu?'menu':'menu-close'"
+    (onToggleSideNav)="getCollapsedSideMenu($event)"[collapsed]="collappeSideMenu"></app-side-menu>
+  <div class="main-content">
+    <app-nav-bar [collapseSideMenu]='collappeSideMenu' [collapseActivity]="collappeActivivty"
+      (sideMenuCollapse)="getCollapsedSideMenu($event)" (activityCollapse)="getCollapsedActivity($event)"></app-nav-bar>
+
+      <p-toast position="top-right" key="tr"></p-toast>
+    <router-outlet></router-outlet>
+  </div>
+  <app-activity [ngClass]="collappeActivivty?'menu-activity':'menu-close'"
+    (onToggleSideNav)="getCollapsedActivity($event)" [collapsed]="collappeActivivty"></app-activity>
+</div> -->
+
+
+<mat-sidenav-container dir="rtl">
+  
+  <mat-sidenav #sidebar [mode]="sideBarMode()" [(opened)]="sideBarOpened">
+    <app-side-menu></app-side-menu>
+  </mat-sidenav>
+  <mat-sidenav #activities [mode]="activitiesMode()" [(opened)]="activitiesOpened" position="end">
+    <app-activity 
+   
+    ></app-activity>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar>
+
+      <nav class="navbar navbar-expand bg-body-tertiary" [style]="{'width':'100%'}" [dir]="dir">
+        <div class="container-fluid">
+          <form class="d-flex" role="search">
+            <button mat-icon-button (click)="sidebar.toggle()" >
+      
+              <i class="pi pi-bars"></i>
+            </button>
+           
+          </form>
+          <span [style]="{'margin-right': '20px','font-size':'20px'}">{{departmentName}}</span>
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <div >
+             
+              <img src="assets/notification.png" width="25px" alt="" height="25px">
+            </div>
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="assets/admin.jpg" style="border-radius: 50px;" height="25px" width="25px" alt="" /> {{ name }}
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" role="button" (click)="changePassword()">{{'ChangePassword'|translate}} </a></li>
+              
+                
+              </ul>
+            </li>
+      
+          </ul>
+          <button mat-icon-button (click)="activities.toggle()" >
+            <i class="pi pi-bars"></i>
+         
+          </button> 
+      
+        </div>
+      </nav>
+<!-- 
+      <button mat-icon-button (click)="sidebar.toggle()" >
+      
+        <i class="pi pi-bars"></i>
+      </button>
+  
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <div style="margin:0px 20px;">
+          <img src="assets/notification.png" width="25px" alt="" height="25px">
+        </div>
+       
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="assets/admin.jpg" style="border-radius: 50px;" height="25px" width="25px" alt="" /> {{ name }}
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" role="button" (click)="changePassword()">{{'ChangePassword'|translate}} </a></li>
+          
+            
+          </ul>
+        </li>
+  
+      </ul>
+     
+      <button mat-icon-button (click)="activities.toggle()" >
+        <i class="pi pi-bars"></i>
+     
+      </button> -->
+      <p-toast position="top-right" key="tr"></p-toast>
+    </mat-toolbar>
+  
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+<!--   <section>Main</section> -->
+</mat-sidenav-container>

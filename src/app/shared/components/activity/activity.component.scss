@@ -1,0 +1,24 @@
+.sidenav {
+    background: #FFF;
+    transition: all 0.5s ease;
+
+    overflow-y:scroll;
+    overflow-x: hidden; 
+        left: 0;
+    top: 0;
+    width: 0px;
+    height: 100vh;
+
+
+}
+
+.head {
+    height: 100px;
+
+}
+
+ 
+.sidenav-collapsed-ltr { 
+    width: 250px;
+ 
+}

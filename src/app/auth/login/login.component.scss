@@ -1,0 +1,24 @@
+.login {
+    position: absolute;
+    inset: 0;
+
+    .login-img {
+        width: 100%;
+        height: 100vh;
+    }
+
+    .img {
+        height: 250px;
+       
+        align-items: center;
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+        display: flex;
+    }
+    .input-invalid{
+        border: 1px solid red;
+    }
+ 
+    
+}
