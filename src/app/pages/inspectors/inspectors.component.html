@@ -1,1 +1,71 @@
-<p>inspectors works!</p>
+<p-toast position="top-right" key="tr"></p-toast>
+
+<div class="row">
+    <h4 class="col-md-6 my-3">{{"INSPECTORS" |translate}}</h4>
+
+    <div class="col-md-6 my-3" style="text-align: end;">
+        <button class="btn px-5" (click)="createInspector()"
+            style="background-color: #1E2337; color: white;">{{'CREATEINSPECTOR'|translate}}</button>
+    </div>
+</div>
+
+<div class="col mt-5">
+    <p-table selectionMode="single" *ngIf="inspectors.length > 0" [dir]="dir" [value]="inspectors"
+        (sortFunction)="customSort($event)" [customSort]="true" [paginator]="true" [scrollable]="false"
+        scrollWidth="800px" [rows]="8" [showCurrentPageReport]="true" [tableStyle]="{ 'min-width': '50rem' }"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th pSortableColumn="id" style="min-width: 230px;" *ngFor="let head of headers">
+                    {{head|translate}}<p-sortIcon [field]="head"></p-sortIcon></th>
+                <th style="min-width: 250px;">{{'ACTION'|translate}} </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-inspectors let-columns="columns">
+            <tr class="m-5">
+
+                <td>{{inspectors.id}}</td>
+
+                <td>{{inspectors.full_name??"Not Provider"}}</td>
+                <td>{{inspectors.email??"Not Provider"}}</td>
+                <td>{{inspectors.phone_number??"Not Provider"}}</td>
+                <td style="text-transform: capitalize;">{{camilCase(inspectors.role??"Not Provider")}}</td>
+                <td style="text-transform: capitalize;">{{camilCase(inspectors.gender??"Not Provider")}}</td>
+
+
+                <td>{{inspectors.national_id??"Not Provider"}}</td>
+                <td>{{inspectors.national_id_expiry|date}}</td>
+                <td>{{inspectors.createDateTime|date}}</td>
+                <td>{{inspectors.createdBy??"Not Provider"}}</td>
+                <td [class]="inspectors.isVerify?'active':'notActive'">
+                    {{inspectors.isVerify??"Not Provider"}}</td>
+                <!-- <td>{{inspectors.lastChangedDateTime|date}}</td>
+                <td>{{inspectors.lastChangedBy??"Not Provider"}}</td> -->
+                <td class="d-flex justify-content-center">
+                    <span>
+                        <button class="py-2 "
+                            style="background-color: #1E2337; color: #fff;  border-radius:5px; min-width: 145px;  "
+                            (click)="editInspector(inspectors)" type="button">{{'EDIT'|translate}} <span
+                                class="pi pi-pen-to-square"></span></button>
+                    </span>
+                    <span class="mx-3">
+                        <button class="py-2 "
+                            style="background-color: #1E2337; color: #fff;  border-radius:5px; min-width: 145px;  "
+                            (click)="deleteInspector(inspectors.id)" type="button">{{'DELETE'|translate}} <span
+                                class="pi pi-pen-to-square"></span></button>
+                    </span>
+                </td>
+            </tr>
+        </ng-template>
+        <!-- <ng-template pTemplate="paginatorleft">
+            <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+        </ng-template>
+        <ng-template pTemplate="paginatorright">
+            <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+        </ng-template> -->
+    </p-table>
+    <p-card *ngIf="inspectors.length == 0" class="d-flex justify-content-center rounded">
+        <h4 class="mx-5 my-3">{{'NOinspectorsFOUND'| translate}}</h4>
+    </p-card>
+
+</div>

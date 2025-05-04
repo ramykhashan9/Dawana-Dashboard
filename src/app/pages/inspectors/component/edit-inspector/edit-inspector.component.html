@@ -1,5 +1,5 @@
 <div class="container " style="position: relative; height: 100%; " dir="rtl">
-    <form [formGroup]="addInspectorGroup">
+    <form [formGroup]="editInspectorGroup">
         <!-- MARK: First, Middle And Last Name Info  -->
 
         <div class="row">
@@ -66,7 +66,7 @@
             <div class="col-6">
                 <label for="national_id_expiry">{{"NATIONALIDEXPIRY"|translate}}</label>
                 <span class="p-fluid">
-                    <p-calendar dir="ltr" formControlName="national_id_expiry" dateFormat="dd.mm.yy"
+                    <p-calendar dir="ltr" formControlName="national_id_expiry" dateFormat="yy-mm-dd"
                         [showIcon]="true"></p-calendar>
 
                 </span>
@@ -76,36 +76,16 @@
                     aria-describedby="basic-addon1" formControlName="national_id">
             </div>
         </div>
-        <!-- MARK: Date Info  -->
 
-        <div class="row">
-            <div class="col-6">
-                <label for="start_date">{{"FROMDATE"|translate}}</label>
-                <span class="p-fluid">
-                    <p-calendar dir="ltr" formControlName="start_date" dateFormat="dd.mm.yy"
-                        [showIcon]="true"></p-calendar>
-
-                </span>
-            </div>
-            <div class="col-6">
-                <label for="end_date">{{"TODATE"|translate}}</label>
-                <span class="p-fluid">
-                    <p-calendar dir="ltr" formControlName="end_date" dateFormat="dd.mm.yy"
-                        [showIcon]="true"></p-calendar>
-
-                </span>
-            </div>
-        </div>
     </form>
 
     <div class="row" style="width: 100%; position: absolute; bottom: 0; display: flex; justify-content: space-between;">
         <button pButton type="button"
             [style]="{'background':'#1E2337', 'padding':'10px 0px','color':'white', 'max-width':'150px','min-width':'100px','border-radius':'4px','border':'1px #1E2337 solid'}"
-            [label]="'CREATEINSPECTOR'|translate" (click)="addInspector()"></button>
+            [label]="'EDITINSPECTOR'|translate" (click)="editInspector()"></button>
 
         <button pButton type="button"
             [style]="{'background':'red',  'padding':'10px 0px','color':'white', 'max-width':'150px','min-width':'100px','border-radius':'4px','border':'1px red solid'}"
             [label]="'CANCEL'| translate" class="ui-button-secondary" (click)="onCancel()"></button>
     </div>
-
 </div>

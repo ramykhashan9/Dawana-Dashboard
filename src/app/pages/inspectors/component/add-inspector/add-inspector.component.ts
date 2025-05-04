@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Subscription } from 'rxjs';
+import { GENDER } from 'src/app/shared/helper/gender';
+import { INPECTORROLES } from 'src/app/shared/helper/inspector_roles';
 import { InspectorService } from 'src/app/shared/services/inspector.service';
 
 @Component({
@@ -13,18 +15,31 @@ import { InspectorService } from 'src/app/shared/services/inspector.service';
 export class AddInspectorComponent implements OnInit, OnDestroy {
   subscription: Subscription = new Subscription();
   addInspectorGroup: FormGroup;
+StringFun: any;
   constructor(public translate: TranslateService, public ref: DynamicDialogRef, private inspectorServices: InspectorService,
   ) {
   }
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
+
+  inspectorRole: string[] = INPECTORROLES;
+  gender: string[] = GENDER;
   ngOnInit(): void {
     this.addInspectorGroup = new FormGroup({
-      "name": new FormControl<string>('', [Validators.required,]),
+
+      "first_name": new FormControl<string>('', [Validators.required,]),
+      "middle_name": new FormControl<string>('', [Validators.required,]),
+      "last_name": new FormControl<string>('', [Validators.required,]),
+      "gender": new FormControl<string>('', [Validators.required,]),
+      "role": new FormControl<string>('', [Validators.required,]),
+      "national_id_expiry": new FormControl<string>('', [Validators.required,]),
+      "national_id": new FormControl<string>('', [Validators.required,]),
       "password": new FormControl<string>('', [Validators.required,]),
       "email": new FormControl<string>('', [Validators.required, Validators.email]),
-      // "role": new FormControl<string>('', [Validators.required,]),
+      "phone_number": new FormControl<string>('', [Validators.required, Validators.required]),
+      "start_date": new FormControl<string>('', [Validators.required, Validators.required]),
+      "end_date": new FormControl<string>('', [Validators.required, Validators.required]),
     });
   }
 
@@ -36,7 +51,8 @@ export class AddInspectorComponent implements OnInit, OnDestroy {
     );
   }
   addInspector() {
-
+console.log(this.addInspectorGroup.value.role);
+console.log(this.addInspectorGroup.value.gender);
     if (this.addInspectorGroup.invalid) {
       return;
     }
@@ -54,4 +70,7 @@ export class AddInspectorComponent implements OnInit, OnDestroy {
     );
     this.subscription.add(createSubscription);
   }
+  // camilCaseMethod(val:string){
+  // return  StringFun.camilCaseMethod(val);
+  // }
 }

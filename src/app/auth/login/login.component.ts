@@ -14,6 +14,7 @@ import { MessageService } from 'primeng/api';
   styleUrls: ['./login.component.scss'],
   providers: [MessageService]
 })
+
 export class LoginComponent implements OnInit, OnDestroy {
 
   loginGroup: FormGroup;
@@ -29,7 +30,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private messageService: MessageService
   ) {
     // if ("currentAdminValue : " + this.authService.currentAdminValue) {
-      // this.router.navigate(['/dawana/pages/dashboard']);
+    //   this.router.navigate(['/dawana/pages/dashboard']);
     // }
   }
 
@@ -58,9 +59,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     } else {
       this.isPasswordValid = true;
     }
-    // if (this.loginGroup.invalid) {
-    //   return;
-    // }
+    if (this.loginGroup.invalid) {
+      return;
+    }
 
     this.spinner.show(undefined, {
       type: 'ball-triangle-path',
@@ -78,10 +79,11 @@ export class LoginComponent implements OnInit, OnDestroy {
         (response) => {
           console.log(response);
           this.storage.setUserId(response.data["id"]);
+          // this.storage.setToken(response.data["access_token"]);
           this.authMessage = response.message;
           this.messageService.add({ key: 'tr', severity: 'success', summary: 'Success', detail: this.authMessage });
           this.spinner.hide();
-          this.router.navigate(['/dawana/auth/confirmlogin']);
+          this.router.navigate(['/dawana/auth/confirm-login']);
         },
         (response: HttpErrorResponse) => {
           this.isLoginFailed = true;

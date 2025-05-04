@@ -7,6 +7,9 @@ import { Subscription } from 'rxjs';
 import { InspectorService } from 'src/app/shared/services/inspector.service';
 import { AddInspectorComponent } from './component/add-inspector/add-inspector.component';
 import { DeleteInspectorComponent } from './component/delete-inspector/delete-inspector.component';
+import { Inspector } from 'src/app/shared/helper/inspector_interface';
+import { EditInspectorComponent } from './component/edit-inspector/edit-inspector.component';
+import { StringFun } from 'src/app/shared/helper/camil_case_method';
 
 @Component({
   selector: 'app-inspectors',
@@ -46,42 +49,35 @@ export class InspectorsComponent implements OnInit, OnDestroy {
   }
 
   headers: string[] = [
-    "رقم",
-    "الاسم",
-    "البريد الأكتروني",
-    "اخر تسجيل دخول",
-    "المنصب",
-    "نشط",
-    "تاريخ و وقت الإنشاء",
-    "تم إنشاؤه بواسطة",
-    "تاريخ ووقت آخر تغيير",
-    "تم التغيير بواسطة",
-    // "ID",
-    // "Name",
-    // "E-mail",
-    // "Last login",
-    // "Role",
-    // "Is active",
-    // "Create DateTime",
-    // "Created By",
-    // "Last Changed DateTime",
-    // "Last Changed By",
+    "ID",
+    "NAME",
+    "EMAIL",
+    "LASTLOGIN",
+    "ROLE",
+    "GENDER",
+    "NATIONALID",
+    "NATIONALIDEXPIRY",
+    "CREATEDDATE",
+   "CREATEDBY",
+   "VERIFY",
+
+
   ]
 
-  Inspectors: [] = [];
+  inspectors: Inspector[] = [];
 
   _getInspector() {
     try {
       const response = this.route.snapshot.data['inspectors'];
       if (response && response.status) {
-        this.Inspectors = response.data;
+        this.inspectors = response.data;
       }
     } catch (e) { }
   }
   getAllInspectors() {
     let getInspectorsSubscriptions = this.inspectorServices.getAllInspectors().subscribe(
       (res) => {
-        this.Inspectors = res['data'];
+        this.inspectors = res['data'];
       }, () => {
 
       });
@@ -112,31 +108,31 @@ export class InspectorsComponent implements OnInit, OnDestroy {
     });
 
   }
-  // editInspector(Inspector: Inspector) {
-  //   this.ref = this.dialogService.open(EditInspectorComponent, {
-  //     data: {
-  //       'inspector': Inspector
-  //     },
-  //     header: this.addInspectorText,
-  //     width: '700px',
-  //     height: "600px",
-  //     contentStyle: { overflow: 'auto' },
-  //     baseZIndex: 10000,
-  //     maximizable: true,
-  //     style: { direction: 'rtl', padding: '10px', background: 'white' }
-  //   });
+  editInspector(inspector: Inspector) {
+    this.ref = this.dialogService.open(EditInspectorComponent, {
+      data: {
+        'inspector': inspector
+      },
+      header: this.addInspectorText,
+      width: '700px',
+      height: "600px",
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+      maximizable: true,
+      style: { direction: 'rtl', padding: '10px', background: 'white' }
+    });
 
-  //   this.ref.onClose.subscribe((response) => {
-  //     if (response && response.status == true) {
-  //       this.getAllInspectors();
-  //       this.messageService.add({ key: 'tr', severity: 'success', summary: 'Success', detail: response['message'] });
+    this.ref.onClose.subscribe((response) => {
+      if (response && response.status == true) {
+        this.getAllInspectors();
+        this.messageService.add({ key: 'tr', severity: 'success', summary: 'Success', detail: response['message'] });
 
-  //     } else {
-  //       this.messageService.add({ key: 'tr', severity: 'error', summary: 'Failed', detail: response['error']['message'] });
+      } else {
+        this.messageService.add({ key: 'tr', severity: 'error', summary: 'Failed', detail: response['error']['message'] });
 
-  //     }
-  //   });
-  // }
+      }
+    });
+  }
   deleteInspector(inspectorID) {
     this.ref = this.dialogService.open(DeleteInspectorComponent, {
       data: {
@@ -161,6 +157,9 @@ export class InspectorsComponent implements OnInit, OnDestroy {
 
       }
     });
+  }
+  camilCase(val){
+   return StringFun.camilCaseMethod(val);
   }
 }
 

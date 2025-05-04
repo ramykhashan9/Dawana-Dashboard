@@ -17,4 +17,9 @@ export class InspectorService {
   delete(inspectorId: number) {
     return this.http.delete<any>(`${this.HostUrl}/delete-inspector/${inspectorId}`);
   }
+   edit(addForm: any,inspectorId:number) {
+    return this.http.put<any>(`${this.HostUrl}/update-inspector/${inspectorId}`,addForm);
+  }
 }
+ 
+ 

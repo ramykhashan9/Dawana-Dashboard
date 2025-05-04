@@ -18,11 +18,11 @@
   <mat-sidenav #sidebar [mode]="sideBarMode()" [(opened)]="sideBarOpened">
     <app-side-menu></app-side-menu>
   </mat-sidenav>
-  <mat-sidenav #activities [mode]="activitiesMode()" [(opened)]="activitiesOpened" position="end">
+  <!-- <mat-sidenav #activities [mode]="activitiesMode()" [(opened)]="activitiesOpened" position="end">
     <app-activity 
    
     ></app-activity>
-  </mat-sidenav>
+  </mat-sidenav> -->
   <mat-sidenav-content>
     <mat-toolbar>
 
@@ -54,10 +54,10 @@
             </li>
       
           </ul>
-          <button mat-icon-button (click)="activities.toggle()" >
+          <!-- <button mat-icon-button (click)="activities.toggle()" >
             <i class="pi pi-bars"></i>
          
-          </button> 
+          </button>  -->
       
         </div>
       </nav>
@@ -92,7 +92,9 @@
       <p-toast position="top-right" key="tr"></p-toast>
     </mat-toolbar>
   
+   <div class="container">
     <router-outlet></router-outlet>
+   </div>
   </mat-sidenav-content>
 <!--   <section>Main</section> -->
 </mat-sidenav-container>

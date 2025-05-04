@@ -1,0 +1,1 @@
+export const INPECTORROLES = ['regional_inspector', 'inspection_reviewer']; 

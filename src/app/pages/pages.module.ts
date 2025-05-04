@@ -36,6 +36,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { InspectorsComponent } from './inspectors/inspectors.component';
 import { AddInspectorComponent } from './inspectors/component/add-inspector/add-inspector.component';
 import { DeleteInspectorComponent } from './inspectors/component/delete-inspector/delete-inspector.component';
+import { EditInspectorComponent } from './inspectors/component/edit-inspector/edit-inspector.component';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -47,7 +48,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     PharmaciesComponent,
     SettingsComponent,
     AddInspectorComponent,
-    DeleteInspectorComponent
+    DeleteInspectorComponent,
+    EditInspectorComponent
   ],
   imports: [
     SharedModule,

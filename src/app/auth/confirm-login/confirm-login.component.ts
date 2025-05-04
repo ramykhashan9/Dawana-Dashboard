@@ -1,12 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import {  FormGroup} from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MessageService } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/shared/services/auth.service';
-import { Storage } from '../../shared/config/storage';
+import { Storage } from 'src/app/shared/config';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
@@ -16,19 +16,18 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class ConfirmLoginComponent implements OnInit, OnDestroy {
   loginGroup: FormGroup;
-  subscriptions: Subscription =new Subscription();
+  subscriptions: Subscription = new Subscription();
   loginFormSubmitted = false;
   isLoginFailed = false;
   authMessage = '';
   userId: string;
   constructor(public translate: TranslateService,
-      private router: Router,
+    private router: Router,
     private authService: AuthService,
     private spinner: NgxSpinnerService,
     private storage: Storage,
     private messageService: MessageService
-      
-   ) {
+  ) {
   }
   dir: string = "rtl";
   ngOnInit(): void {
@@ -40,11 +39,11 @@ export class ConfirmLoginComponent implements OnInit, OnDestroy {
   }
 
   pincode: string;
-  isCodeValid:boolean=true;
+  isCodeValid: boolean = true;
   confirmLogin() {
-    let code= +this.pincode;
+    let code = +this.pincode;
     if (this.length !== 4) {
-     
+
       return;
     }
 
@@ -56,39 +55,26 @@ export class ConfirmLoginComponent implements OnInit, OnDestroy {
       fullScreen: true,
     });
 
-  
-      this.authService
-      .confirmLogin(+this.userId,code)
+    this.authService
+      .confirmLogin(+this.userId, code)
       .subscribe(
         (response) => {
           console.log(response);
           this.storage.setToken(response.data["access_token"]);
-          // this.storage.setUserName(response.data["userName"]);
-          // this.storage.setUserEmail(response.data["email"]);
           this.storage.setUserId(response.data["id"]);
-          // if(response.data['department_level'] === "الإدارة العامة للشكاوي"){
-          //   this.storage.setAdminRole("SuperAdmin");
-          // }else{
-          //   this.storage.setAdminRole(response.data.userType);
-          // }
-          
-          // this.storage.setCurrentAdmin(response.data);
-          // this.storage.setUserDepartmentId(response.data['department']['_id']);
-          // this.storage.setUserDepartmentName(response.data['department']['name']);
-          // this.storage.setUserDepartmentLevel(response.data['department_level']);
-           this.authService.currentAdminSubject.next(response.data);
+       
+          this.storage.setCurrentAdmin(response.data);
+          this.authService.currentAdminSubject.next(response.data);
           this.authMessage = response.message;
-          this.isCodeValid=true && (this.length ==4);
+          this.isCodeValid = true && (this.length == 4);
           this.messageService.add({ key: 'tr', severity: 'success', summary: 'Success', detail: this.authMessage });
           this.spinner.hide();
-          // this.router.navigate(['/dawana/pages/dashboard']);
-           this.router.navigate(['/dawana/pages/pharmacies']);
-          
-        
+          this.router.navigate(['/dawana/pages/pharmacies']);
+
         },
         (response: HttpErrorResponse) => {
           this.isLoginFailed = true;
-          this.isCodeValid=false && (this.length ==4);
+          this.isCodeValid = false && (this.length == 4);
           this.spinner.hide();
           this.authMessage = response.error.message;
           this.messageService.add({ key: 'tr', severity: 'error', summary: 'Error', detail: this.authMessage });
@@ -97,13 +83,13 @@ export class ConfirmLoginComponent implements OnInit, OnDestroy {
   }
 
   onCodeCompleted(code: string) {
-    
+
     this.pincode = code;
     console.log(code.length);
   }
-  length:number;
+  length: number;
   onCodeChanged(code: string) {
-    this.length=code.length;
+    this.length = code.length;
   }
 
   resendCode() {

@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { Storage } from '../../config';
 import { Subscription } from 'rxjs';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { MessageService } from 'primeng/api';
@@ -10,22 +9,22 @@ import { ChangeMyPasswordComponent } from './components/change-my-password/chang
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.scss']
 })
-export class NavBarComponent implements OnInit,OnDestroy {
-  subscriptions:Subscription=new Subscription();
+export class NavBarComponent implements OnInit, OnDestroy {
+  subscriptions: Subscription = new Subscription();
   ref: DynamicDialogRef | undefined;
-  constructor(public translate: TranslateService,private messageService: MessageService, private storage: Storage,private dialogService: DialogService) { }
+  constructor(public translate: TranslateService, private messageService: MessageService, private dialogService: DialogService) { }
   ngOnDestroy(): void {
-  if(this.subscriptions){
-    this.subscriptions.unsubscribe();
-  }
+    if (this.subscriptions) {
+      this.subscriptions.unsubscribe();
+    }
   }
   ngOnInit(): void {
     this.getTranslateText();
-    this.name = this.storage.getuserName().replace(/"/g, '');
-    this.type=this.storage.getAdminRole().replace(/"/g, '');
-   
+    // this.name = this.storage.getuserName().replace(/"/g, '');
+    // this.type=this.storage.getAdminRole().replace(/"/g, '');
+
   }
-  type:string="";
+  type: string = "";
   name: string = "";
   dir: string = "rtl";
   @Input() collapseSideMenu: boolean;
@@ -43,7 +42,7 @@ export class NavBarComponent implements OnInit,OnDestroy {
     this.sideMenuCollapse.emit(this.collapseSideMenu);
     console.log(this.sideMenuCollapse);
   }
- 
+
   head: string;
   changePassword() {
     this.ref = this.dialogService.open(ChangeMyPasswordComponent, {
@@ -58,7 +57,7 @@ export class NavBarComponent implements OnInit,OnDestroy {
     });
 
     this.ref.onClose.subscribe((response) => {
-      if(response == undefined){
+      if (response == undefined) {
         return;
       }
       if (response.status === true) {
@@ -68,7 +67,7 @@ export class NavBarComponent implements OnInit,OnDestroy {
         this.messageService.add({ key: 'tr', severity: 'error', summary: 'Failed', detail: response['error']['message'] });
 
       }
- 
+
     });
   }
 
@@ -78,7 +77,7 @@ export class NavBarComponent implements OnInit,OnDestroy {
         this.head = res;
       }
     );
-  
+
     this.subscriptions.add(headSub$);
   }
 }

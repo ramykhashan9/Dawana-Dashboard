@@ -55,9 +55,9 @@ export class Storage {
   removeUserId(): any {
     return this.removeLocalStorage('UserId');
   }
-  setAdminRole(role: string) {
-    this.setLocalStorage('role', role);
-  }
+  // setAdminRole(role: string) {
+  //   this.setLocalStorage('role', role);
+  // }
   // getAdminRole(): string {
   //   return this.getLocalStorage('role');
   // }

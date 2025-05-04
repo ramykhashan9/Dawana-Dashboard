@@ -24,7 +24,7 @@ const routes: Routes = [
         },
       },
        {
-        path: 'confirmlogin',
+        path: 'confirm-login',
         component: ConfirmLoginComponent,
         canActivate:[ConfirmLoginGuardService],
         data: {
