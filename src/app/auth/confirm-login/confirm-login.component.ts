@@ -6,7 +6,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { MessageService } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/shared/services/auth.service';
-import { Storage } from 'src/app/shared/config';
+import { Storage } from '../../shared/config/storage';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
@@ -22,12 +22,13 @@ export class ConfirmLoginComponent implements OnInit, OnDestroy {
   authMessage = '';
   userId: string;
   constructor(public translate: TranslateService,
-     private router: Router,
+      private router: Router,
     private authService: AuthService,
     private spinner: NgxSpinnerService,
     private storage: Storage,
     private messageService: MessageService
-  ) {
+      
+   ) {
   }
   dir: string = "rtl";
   ngOnInit(): void {
@@ -55,15 +56,16 @@ export class ConfirmLoginComponent implements OnInit, OnDestroy {
       fullScreen: true,
     });
 
-    this.authService
-      .confirmLogin(this.userId,code)
+  
+      this.authService
+      .confirmLogin(+this.userId,code)
       .subscribe(
         (response) => {
           console.log(response);
-          // this.storage.setToken(response.data["access_token"]);
+          this.storage.setToken(response.data["access_token"]);
           // this.storage.setUserName(response.data["userName"]);
           // this.storage.setUserEmail(response.data["email"]);
-          // this.storage.setUserId(response.data["id"]);
+          this.storage.setUserId(response.data["id"]);
           // if(response.data['department_level'] === "الإدارة العامة للشكاوي"){
           //   this.storage.setAdminRole("SuperAdmin");
           // }else{
@@ -74,13 +76,14 @@ export class ConfirmLoginComponent implements OnInit, OnDestroy {
           // this.storage.setUserDepartmentId(response.data['department']['_id']);
           // this.storage.setUserDepartmentName(response.data['department']['name']);
           // this.storage.setUserDepartmentLevel(response.data['department_level']);
-          this.authService.currentAdminSubject.next(response.data);
+           this.authService.currentAdminSubject.next(response.data);
           this.authMessage = response.message;
           this.isCodeValid=true && (this.length ==4);
           this.messageService.add({ key: 'tr', severity: 'success', summary: 'Success', detail: this.authMessage });
           this.spinner.hide();
-         // this.router.navigate(['/dawana/pages/dashboard']);
-         
+          // this.router.navigate(['/dawana/pages/dashboard']);
+           this.router.navigate(['/dawana/pages/pharmacies']);
+          
         
         },
         (response: HttpErrorResponse) => {
@@ -104,7 +107,7 @@ export class ConfirmLoginComponent implements OnInit, OnDestroy {
   }
 
   resendCode() {
-    let resendCodeSub$ = this.authService.resendCode(this.userId).subscribe(
+    let resendCodeSub$ = this.authService.resendCode(+this.userId).subscribe(
       (res) => {
         this.messageService.add({ key: 'tr', severity: 'success', summary: 'Success', detail: res['message'] });
       },

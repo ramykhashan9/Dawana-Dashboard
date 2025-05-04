@@ -17,21 +17,22 @@ import { MessageService } from 'primeng/api';
 export class LoginComponent implements OnInit, OnDestroy {
 
   loginGroup: FormGroup;
-  subscriptions: Subscription= new Subscription();
+  subscriptions: Subscription = new Subscription();
   loginFormSubmitted = false;
   isLoginFailed = false;
   authMessage = '';
   constructor(public translate: TranslateService,
-     private router: Router,
+    private router: Router,
     private authService: AuthService,
     private spinner: NgxSpinnerService,
-   private storage: Storage,
+    private storage: Storage,
     private messageService: MessageService
   ) {
-     if ("currentAdminValue : " + this.authService.currentAdminValue) {
+    // if ("currentAdminValue : " + this.authService.currentAdminValue) {
       // this.router.navigate(['/dawana/pages/dashboard']);
-     }
+    // }
   }
+
   dir: string = "rtl";
   ngOnInit(): void {
     this.loginGroup = new FormGroup({
@@ -42,20 +43,20 @@ export class LoginComponent implements OnInit, OnDestroy {
   get lf() {
     return this.loginGroup.controls;
   }
- 
- isEmailValid=true;
- isPasswordValid=true;
+
+  isEmailValid = true;
+  isPasswordValid = true;
   login() {
-    if(this.lf.email.invalid && this.lf.email.errors?.required){
-      this.isEmailValid=false;
-    }else{
-      this.isEmailValid=true;
+    if (this.lf.email.invalid && this.lf.email.errors?.required) {
+      this.isEmailValid = false;
+    } else {
+      this.isEmailValid = true;
     }
 
-    if(this.lf.password.invalid && this.lf.password.errors?.required){
-      this.isPasswordValid=false;
-    }else{
-      this.isPasswordValid=true;
+    if (this.lf.password.invalid && this.lf.password.errors?.required) {
+      this.isPasswordValid = false;
+    } else {
+      this.isPasswordValid = true;
     }
     // if (this.loginGroup.invalid) {
     //   return;
@@ -69,7 +70,9 @@ export class LoginComponent implements OnInit, OnDestroy {
       fullScreen: true,
     });
 
-   let loginSub$= this.authService
+
+    let loginSub$ = this.authService
+
       .login(this.loginGroup.value.email.toLowerCase(), this.loginGroup.value.password)
       .subscribe(
         (response) => {
@@ -87,7 +90,8 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.messageService.add({ key: 'tr', severity: 'error', summary: 'Error', detail: this.authMessage });
         }
       );
-      this.subscriptions.add(loginSub$);
+    this.subscriptions.add(loginSub$);
+
   }
   isShowPassword: boolean = false;
   showPassword() {

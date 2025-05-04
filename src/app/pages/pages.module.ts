@@ -28,16 +28,27 @@ import { CarouselModule } from 'primeng/carousel';
 import { GalleriaModule } from 'primeng/galleria';
 import { ImageModule } from 'primeng/image';
 import { FileUploadModule } from 'primeng/fileupload';
-import {NgxImageCompressService} from 'ngx-image-compress';
+import { NgxImageCompressService } from 'ngx-image-compress';
 import { PaginatorModule } from 'primeng/paginator';
 import { SharedModule } from '../shared/shared.module';
- export function HttpLoaderFactory(http: HttpClient) {
+import { PharmaciesComponent } from './pharmacies/pharmacies.component';
+import { SettingsComponent } from './settings/settings.component';
+import { InspectorsComponent } from './inspectors/inspectors.component';
+import { AddInspectorComponent } from './inspectors/component/add-inspector/add-inspector.component';
+import { DeleteInspectorComponent } from './inspectors/component/delete-inspector/delete-inspector.component';
+export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
 @NgModule({
   declarations: [
-   ],
+
+    InspectorsComponent,
+    PharmaciesComponent,
+    SettingsComponent,
+    AddInspectorComponent,
+    DeleteInspectorComponent
+  ],
   imports: [
     SharedModule,
     CommonModule,
@@ -83,6 +94,6 @@ import { SharedModule } from '../shared/shared.module';
 
   ],
 
-  providers: [DialogService, MessageService,NgxImageCompressService]
+  providers: [DialogService, MessageService, NgxImageCompressService]
 })
 export class PagesModule { }

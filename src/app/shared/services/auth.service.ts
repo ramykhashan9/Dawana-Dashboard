@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Storage } from '../config';
-import { BehaviorSubject, Observable } from 'rxjs';
+ import { BehaviorSubject, Observable } from 'rxjs';
 import { Config } from '../config';
+import { Storage } from '../config/storage';
 
 @Injectable({
   providedIn: 'root'
@@ -25,10 +25,10 @@ export class AuthService {
   login(email: string, password: string) {
     return this.http.post<any>(`${this.HostUrl}/login`, { email, password });
   }
-  confirmLogin(id: string, code: number) {
+  confirmLogin(id: number, code: number) {
     return this.http.post<any>(`${this.HostUrl}/confirm-login`, { id, code });
   }
-  resendCode(id: string) {
+  resendCode(id: number) {
     return this.http.post<any>(`${this.HostUrl}/resend-code`, { id });
   }
 

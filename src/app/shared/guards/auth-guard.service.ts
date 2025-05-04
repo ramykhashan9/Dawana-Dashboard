@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 //import { AuthService } from '../services/auth.service';
 //import { Router } from '@angular/router';
 
@@ -6,17 +8,16 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthGuardService {
- // constructor(private authService: AuthService, private router: Router) {}
+ constructor(private authService: AuthService, private router: Router) {}
 
   canActivate() {
-    return true;
-    // let isAuth = this.authService.currentAdminValue;
+     let isAuth = this.authService.currentAdminValue;
 
-    // if (!isAuth) {
-    //   this.router.navigate(['dawana/auth/login']);
-    //   return false;
-    // } else {
-    //   return true;
-    // }
+    if (!isAuth) {
+      this.router.navigate(['dawana/auth/login']);
+      return false;
+    } else {
+      return true;
+    }
   }
 }

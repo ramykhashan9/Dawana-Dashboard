@@ -2,8 +2,8 @@ import { NavbarDataModal } from './side-menu_helper';
 
 //Sidebar menu Routes and data
 export const routes: NavbarDataModal[] = [
-  // { routerLink: '/dawana/pages/dashboard', icon: 'pi pi-th-large', lable: 'DASHBOARD',roles:['admin','user','SuperAdmin'] },
-  // { routerLink: '/dawana/pages/departments', icon: 'pi pi-users', lable: 'ALLDEPARTMENTS',roles:['SuperAdmin'] },
+  { routerLink: '/dawana/pages/pharmacies', icon: 'pi pi-th-large', lable: 'PHARMACIES', roles: ['SuperAdmin'] },
+  { routerLink: '/dawana/pages/inspectors', icon: 'pi pi-users', lable: 'INSPECTORS', roles: ['SuperAdmin'] },
   // { routerLink: '/dawana/pages/users', icon: 'pi pi-users', lable: 'USERS' ,roles:['SuperAdmin']},
   // { routerLink: '/dawana/pages/tickets', icon: 'pi pi-ticket', lable: 'TICKETS' ,roles:['admin','user','SuperAdmin']},
   // { routerLink: '/dawana/pages/direct-tickets', icon: 'pi pi-ticket', lable: 'DIRECTTICKETS' ,roles:['admin','user','SuperAdmin']},
@@ -14,6 +14,6 @@ export const routes: NavbarDataModal[] = [
   // { routerLink: '/dawana/pages/archive-tickets', icon: 'pi pi-ticket', lable: 'ARCHIVETICKETS' ,roles:['admin','user','SuperAdmin']},
   // { routerLink: '/dawana/pages/close-tickets', icon: 'pi pi-ticket', lable: 'CLOSEDTICKETS' ,roles:['admin','user','SuperAdmin']},
 
-  
+
 
 ];
