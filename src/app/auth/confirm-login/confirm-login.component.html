@@ -2,11 +2,19 @@
     <div class="row h-100 " style="height: 100%; width: 100%;">
         <p-toast position="top-right" key="tr"></p-toast>
 
-        <div class="col-md-6 p-0">
-
-            <img src="assets/login.png" class="login-img">
-
+        <div class="col-md-6 p-0 m-0 d-flex flex-column justify-content-center align-items-center"
+        style="background-image: url('assets/login.png'); height: 100%;">
+        <div class="d-flex justify-content-start align-items-start  pt-4 ps-5 " style="width: 100%; height: 300px;">
+            <img src="assets/eda.png" alt="">
         </div>
+        <div class="d-flex justify-content-center align-items-center" style="height: 400px;">
+            <img src="assets/dawana.png" alt="">
+        </div>
+        <div class="d-flex justify-content-center align-items-center" style="height: 400px;">
+            <img src="assets/powered-by.png" alt="">
+        </div>
+
+    </div>
         <div class="col  text-center m-5">
             <div class="img ">
                 <img src="assets/logo.png" alt="" style=" width:70%;" class="text-center">
@@ -34,7 +42,7 @@
             </div>
 
             <button class="btn px-5 mt-5 mb-5" (click)="confirmLogin()"
-                style="background-color: #1E2337; color: white;">{{'Login'|translate}}</button>
+                style="background-color: #205692; color: white;">{{'Login'|translate}}</button>
 
         </div>
     </div>

@@ -1,11 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-//import { Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
-//import { AuthService } from 'src/app/shared/services/auth.service';
-//import { Storage } from 'src/app/shared/config';
-//import { HttpErrorResponse } from '@angular/common/http';
+import { AuthService } from 'src/app/shared/services/auth.service';
+import { Storage } from 'src/app/shared/config';
+import { HttpErrorResponse } from '@angular/common/http';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MessageService } from 'primeng/api';
 @Component({
@@ -22,15 +22,15 @@ export class LoginComponent implements OnInit, OnDestroy {
   isLoginFailed = false;
   authMessage = '';
   constructor(public translate: TranslateService,
-    // private router: Router,
-   // private authService: AuthService,
+     private router: Router,
+    private authService: AuthService,
     private spinner: NgxSpinnerService,
-  //  private storage: Storage,
-   // private messageService: MessageService
+   private storage: Storage,
+    private messageService: MessageService
   ) {
-    // if ("currentAdminValue : " + this.authService.currentAdminValue) {
-    //   this.router.navigate(['/dawana/pages/dashboard']);
-    // }
+     if ("currentAdminValue : " + this.authService.currentAdminValue) {
+      // this.router.navigate(['/dawana/pages/dashboard']);
+     }
   }
   dir: string = "rtl";
   ngOnInit(): void {
@@ -69,25 +69,25 @@ export class LoginComponent implements OnInit, OnDestroy {
       fullScreen: true,
     });
 
-  //  let loginSub$= this.authService
-  //     .login(this.loginGroup.value.email.toLowerCase(), this.loginGroup.value.password)
-  //     .subscribe(
-  //       (response) => {
-  //         console.log(response);
-  //         this.storage.setUserId(response.data["id"]);
-  //         this.authMessage = response.message;
-  //         this.messageService.add({ key: 'tr', severity: 'success', summary: 'Success', detail: this.authMessage });
-  //         this.spinner.hide();
-  //         this.router.navigate(['/dawana/auth/confirmlogin']);
-  //       },
-  //       (response: HttpErrorResponse) => {
-  //         this.isLoginFailed = true;
-  //         this.spinner.hide();
-  //         this.authMessage = response.error.message;
-  //         this.messageService.add({ key: 'tr', severity: 'error', summary: 'Error', detail: this.authMessage });
-  //       }
-  //     );
-  //     this.subscriptions.add(loginSub$);
+   let loginSub$= this.authService
+      .login(this.loginGroup.value.email.toLowerCase(), this.loginGroup.value.password)
+      .subscribe(
+        (response) => {
+          console.log(response);
+          this.storage.setUserId(response.data["id"]);
+          this.authMessage = response.message;
+          this.messageService.add({ key: 'tr', severity: 'success', summary: 'Success', detail: this.authMessage });
+          this.spinner.hide();
+          this.router.navigate(['/dawana/auth/confirmlogin']);
+        },
+        (response: HttpErrorResponse) => {
+          this.isLoginFailed = true;
+          this.spinner.hide();
+          this.authMessage = response.error.message;
+          this.messageService.add({ key: 'tr', severity: 'error', summary: 'Error', detail: this.authMessage });
+        }
+      );
+      this.subscriptions.add(loginSub$);
   }
   isShowPassword: boolean = false;
   showPassword() {

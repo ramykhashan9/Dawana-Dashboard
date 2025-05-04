@@ -1,13 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import {  FormGroup} from '@angular/forms';
-//import { Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { NgxSpinnerService } from 'ngx-spinner';
-//import { MessageService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 import { Subscription } from 'rxjs';
-//import { AuthService } from 'src/app/shared/services/auth.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { Storage } from 'src/app/shared/config';
-//import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-confirm-login',
@@ -22,11 +22,11 @@ export class ConfirmLoginComponent implements OnInit, OnDestroy {
   authMessage = '';
   userId: string;
   constructor(public translate: TranslateService,
-    // private router: Router,
-   // private authService: AuthService,
+     private router: Router,
+    private authService: AuthService,
     private spinner: NgxSpinnerService,
     private storage: Storage,
-   // private messageService: MessageService
+    private messageService: MessageService
   ) {
   }
   dir: string = "rtl";
@@ -41,11 +41,11 @@ export class ConfirmLoginComponent implements OnInit, OnDestroy {
   pincode: string;
   isCodeValid:boolean=true;
   confirmLogin() {
-    //let code= +this.pincode;
-    // if (this.length !== 4) {
+    let code= +this.pincode;
+    if (this.length !== 4) {
      
-    //   return;
-    // }
+      return;
+    }
 
     this.spinner.show(undefined, {
       type: 'ball-triangle-path',
@@ -55,42 +55,42 @@ export class ConfirmLoginComponent implements OnInit, OnDestroy {
       fullScreen: true,
     });
 
-    // this.authService
-    //   .confirmLogin(this.userId,code)
-    //   .subscribe(
-    //     (response) => {
-    //       console.log(response);
-    //       this.storage.setToken(response.data["access_token"]);
-    //       this.storage.setUserName(response.data["userName"]);
-    //       this.storage.setUserEmail(response.data["email"]);
-    //       this.storage.setUserId(response.data["id"]);
-    //       if(response.data['department_level'] === "الإدارة العامة للشكاوي"){
-    //         this.storage.setAdminRole("SuperAdmin");
-    //       }else{
-    //         this.storage.setAdminRole(response.data.userType);
-    //       }
+    this.authService
+      .confirmLogin(this.userId,code)
+      .subscribe(
+        (response) => {
+          console.log(response);
+          // this.storage.setToken(response.data["access_token"]);
+          // this.storage.setUserName(response.data["userName"]);
+          // this.storage.setUserEmail(response.data["email"]);
+          // this.storage.setUserId(response.data["id"]);
+          // if(response.data['department_level'] === "الإدارة العامة للشكاوي"){
+          //   this.storage.setAdminRole("SuperAdmin");
+          // }else{
+          //   this.storage.setAdminRole(response.data.userType);
+          // }
           
-    //       this.storage.setCurrentAdmin(response.data);
-    //       this.storage.setUserDepartmentId(response.data['department']['_id']);
-    //       this.storage.setUserDepartmentName(response.data['department']['name']);
-    //       this.storage.setUserDepartmentLevel(response.data['department_level']);
-    //       this.authService.currentAdminSubject.next(response.data);
-    //       this.authMessage = response.message;
-    //       this.isCodeValid=true && (this.length ==4);
-    //       this.messageService.add({ key: 'tr', severity: 'success', summary: 'Success', detail: this.authMessage });
-    //       this.spinner.hide();
-    //       this.router.navigate(['/dawana/pages/dashboard']);
+          // this.storage.setCurrentAdmin(response.data);
+          // this.storage.setUserDepartmentId(response.data['department']['_id']);
+          // this.storage.setUserDepartmentName(response.data['department']['name']);
+          // this.storage.setUserDepartmentLevel(response.data['department_level']);
+          this.authService.currentAdminSubject.next(response.data);
+          this.authMessage = response.message;
+          this.isCodeValid=true && (this.length ==4);
+          this.messageService.add({ key: 'tr', severity: 'success', summary: 'Success', detail: this.authMessage });
+          this.spinner.hide();
+         // this.router.navigate(['/dawana/pages/dashboard']);
          
         
-      //   },
-      //   (response: HttpErrorResponse) => {
-      //     this.isLoginFailed = true;
-      //     this.isCodeValid=false && (this.length ==4);
-      //     this.spinner.hide();
-      //     this.authMessage = response.error.message;
-      //     this.messageService.add({ key: 'tr', severity: 'error', summary: 'Error', detail: this.authMessage });
-      //   }
-      // );
+        },
+        (response: HttpErrorResponse) => {
+          this.isLoginFailed = true;
+          this.isCodeValid=false && (this.length ==4);
+          this.spinner.hide();
+          this.authMessage = response.error.message;
+          this.messageService.add({ key: 'tr', severity: 'error', summary: 'Error', detail: this.authMessage });
+        }
+      );
   }
 
   onCodeCompleted(code: string) {
@@ -104,16 +104,16 @@ export class ConfirmLoginComponent implements OnInit, OnDestroy {
   }
 
   resendCode() {
-    // let resendCodeSub$ = this.authService.resendCode(this.userId).subscribe(
-    //   (res) => {
-    //     this.messageService.add({ key: 'tr', severity: 'success', summary: 'Success', detail: res['message'] });
-    //   },
-    //   (error) => {
-    //     this.messageService.add({ key: 'tr', severity: 'error', summary: 'Failed', detail: error['error']['message'] });
-    //   }
-    // );
+    let resendCodeSub$ = this.authService.resendCode(this.userId).subscribe(
+      (res) => {
+        this.messageService.add({ key: 'tr', severity: 'success', summary: 'Success', detail: res['message'] });
+      },
+      (error) => {
+        this.messageService.add({ key: 'tr', severity: 'error', summary: 'Failed', detail: error['error']['message'] });
+      }
+    );
 
-    // this.subscriptions.add(resendCodeSub$);
+    this.subscriptions.add(resendCodeSub$);
   }
   ngOnDestroy(): void {
     if (this.subscriptions) {
