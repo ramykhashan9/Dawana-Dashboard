@@ -18,8 +18,7 @@ import { InspectorService } from 'src/app/shared/services/inspector.service';
 export class EditInspectorComponent implements OnInit, OnDestroy {
   subscription: Subscription = new Subscription();
   editInspectorGroup: FormGroup;
-  StringFun: any;
-  constructor(private dateConverter: DatePipe, public translate: TranslateService, public ref: DynamicDialogRef, private inspectorServices: InspectorService, public config: DynamicDialogConfig
+   constructor(private dateConverter: DatePipe, public translate: TranslateService, public ref: DynamicDialogRef, private inspectorServices: InspectorService, public config: DynamicDialogConfig
   ) {
     this.inspector = config.data.inspector;
     this.expiryNationalID = this.dateConverter.transform(this.inspector.national_id_expiry, 'yyyy-MM-dd')!;

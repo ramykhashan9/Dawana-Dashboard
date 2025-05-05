@@ -30,7 +30,7 @@ export class DeleteInspectorComponent implements OnDestroy {
     );
   }
   deleteAdmin() {
-    let deleteSubscription = this.inspectorServices.delete(this.dialogConfig.data.admin_id).subscribe(
+    let deleteSubscription = this.inspectorServices.delete(this.dialogConfig.data.inspector_id).subscribe(
       (res) => {
         if (res && res['status']) {
           this.ref.close(res);

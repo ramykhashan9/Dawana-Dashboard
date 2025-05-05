@@ -17,7 +17,7 @@ const routes: Routes = [
     canActivate: [AuthGuardService],
     resolve: {
 
-      pharmacise: PharmaciseRedolver,
+      pharmacies: PharmaciseRedolver,
 
     },
     children: []

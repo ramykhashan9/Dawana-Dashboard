@@ -37,6 +37,10 @@ import { InspectorsComponent } from './inspectors/inspectors.component';
 import { AddInspectorComponent } from './inspectors/component/add-inspector/add-inspector.component';
 import { DeleteInspectorComponent } from './inspectors/component/delete-inspector/delete-inspector.component';
 import { EditInspectorComponent } from './inspectors/component/edit-inspector/edit-inspector.component';
+import { AcceptRejectComponent } from './pharmacies/component/accept-reject/accept-reject.component';
+import { DetailsComponent } from './pharmacies/component/details/details.component';
+import { AssignToComponent } from './pharmacies/component/assign-to/assign-to.component';
+import { UploadDispensingComponent } from './pharmacies/component/upload-dispensing/upload-dispensing.component';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -49,7 +53,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     SettingsComponent,
     AddInspectorComponent,
     DeleteInspectorComponent,
-    EditInspectorComponent
+    EditInspectorComponent,
+    AcceptRejectComponent,
+    DetailsComponent,
+    AssignToComponent,
+    UploadDispensingComponent
   ],
   imports: [
     SharedModule,

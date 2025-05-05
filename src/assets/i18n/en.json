@@ -10,7 +10,7 @@
   "TICKET": "Ticket",
   "CANCEL": "Cancel",
   "EDIT": "Edit",
-  "DETAILS": " Ticket Details",
+  "DETAILS": "Pharmacy Details",
   "ID": "Id",
   "REQUESTEDBY": "Requested By",
   "PRIORITY": "Priority",
@@ -71,6 +71,9 @@
   "DELETEINSPECTOR": "Delete Inspector",
   "EDITINSPECTOR": "Edit Inspector",
   "DELETE": "Delete",
+  "ACCEPTPHARMACY": "Are you sure want approve this pharmacy?",
+  "REJECTPHARMACY": "Are you sure want reject this pharmacy?",
+
   "DEPARTMENTCREATEDBY": "Created By",
   "DELETEINSPECTORSENTANCE": "Are you sure want delete this inspector?",
   "DEPARTMENTUPDATEDBY": "Updated By",
@@ -184,9 +187,12 @@
   "NO": "No",
   "ASSIGNTOUSER": "Assign User",
   "REJECT": "Reject",
+  "ACCEPT": "Accept",
   "UNFROZEN": "UnFrozen",
   "CHANGEUSERROLE": "Change User Role",
   "CLOSEREQUEST": "Closure Request",
   "DATACOMPLETED": "Change to InProgress",
-  "UPLOADDOCUMNETS": "Upload Documnets"
+  "UPLOADDOCUMNETS": "Upload Documnets",
+  "UPLOADDOC": "Upload Documnet",
+  "PHARMACIES": "Pharmacies"
 }

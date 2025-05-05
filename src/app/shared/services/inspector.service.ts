@@ -19,6 +19,12 @@ export class InspectorService {
   }
    edit(addForm: any,inspectorId:number) {
     return this.http.put<any>(`${this.HostUrl}/update-inspector/${inspectorId}`,addForm);
+  
+  }  
+   getInspectorByName(name) {
+    return this.http.post<any>(`${this.HostUrl}/search-by-name`,{
+      'name':name
+    });
   }
 }
  

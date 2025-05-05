@@ -70,7 +70,5 @@ console.log(this.addInspectorGroup.value.gender);
     );
     this.subscription.add(createSubscription);
   }
-  // camilCaseMethod(val:string){
-  // return  StringFun.camilCaseMethod(val);
-  // }
+ 
 }

@@ -1,0 +1,27 @@
+<div class="container " style="position: relative; height: 100%; " dir="rtl">
+    <form [formGroup]="assignInspectorGroup">
+        
+        <div class="col-12">
+            <label for="inspector">{{'INSPECTORS' |translate}}</label>
+            <fieldset class="form-group">
+                <span class="p-fluid">
+                    <p-autoComplete  id="inspector" formControlName="inspector" [suggestions]="inspectors" (completeMethod)="filterInspector($event)" field="full_name"></p-autoComplete>
+                    <small style="color: red;" *ngIf="showHint">* {{'AUTOCOMPLETEHINT' | translate}}</small>
+                  
+
+                </span>
+            </fieldset>
+        </div>
+    </form>
+
+    <div class="row" style="width: 100%; position: absolute; bottom: 0; display: flex; justify-content: space-between;">
+        <button pButton type="button"
+            [style]="{'background':'#1E2337', 'padding':'10px 0px','color':'white', 'max-width':'150px','min-width':'100px','border-radius':'4px','border':'1px #1E2337 solid'}"
+            [label]="'ASSIGNTO'|translate" (click)="assignTo()"></button>
+
+        <button pButton type="button"
+            [style]="{'background':'red',  'padding':'10px 0px','color':'white', 'max-width':'150px','min-width':'100px','border-radius':'4px','border':'1px red solid'}"
+            [label]="'CANCEL'| translate" class="ui-button-secondary" (click)="onCancel()"></button>
+    </div>
+
+</div>
