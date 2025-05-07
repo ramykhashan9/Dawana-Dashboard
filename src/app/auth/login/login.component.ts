@@ -79,7 +79,6 @@ export class LoginComponent implements OnInit, OnDestroy {
         (response) => {
           console.log(response);
           this.storage.setUserId(response.data["id"]);
-          // this.storage.setToken(response.data["access_token"]);
           this.authMessage = response.message;
           this.messageService.add({ key: 'tr', severity: 'success', summary: 'Success', detail: this.authMessage });
           this.spinner.hide();

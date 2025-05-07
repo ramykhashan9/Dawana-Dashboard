@@ -1,0 +1,27 @@
+td,
+th {
+  text-align: center;
+}
+
+.selected-row {
+  background-color: #d1e7dd;
+  /* Light green background */
+  color: #0f5132;
+  /* Dark green text */
+}
+
+.notActive {
+  color: rgba(255, 0, 0, 0.341) !important;
+  text-transform: capitalize;
+  font-weight: 900;
+}.active {
+  color: rgb(22, 184, 0) !important;
+  text-transform: capitalize;
+  font-weight: 900;
+}
+.action{
+    background:  #702586;
+    color: white;
+    width: 40%;
+    margin-left:10px ;
+}

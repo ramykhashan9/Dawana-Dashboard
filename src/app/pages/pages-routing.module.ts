@@ -5,6 +5,8 @@ import { AuthGuardService } from '../shared/guards/auth-guard.service';
 import { PharmaciseRedolver } from '../shared/resolver/pharmacies.resolver';
 import { InspectorsComponent } from './inspectors/inspectors.component';
 import { InspectorRedolver } from '../shared/resolver/inspectors.resolver';
+import { AdminsRedolver } from '../shared/resolver/admins.resolver';
+import { AdminsComponent } from './admins/admins.component';
 //import { AuthGuardService } from '../shared/guards/auth-guard.service';
 
 const routes: Routes = [
@@ -31,6 +33,19 @@ const routes: Routes = [
     resolve: {
 
       inspectors: InspectorRedolver,
+
+    },
+    children: []
+  }, {
+    path: 'admins',
+    component: AdminsComponent,
+    data: {
+      title: 'Page',
+    },
+    canActivate: [AuthGuardService],
+    resolve: {
+
+      admins: AdminsRedolver,
 
     },
     children: []

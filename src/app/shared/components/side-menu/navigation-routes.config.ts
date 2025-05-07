@@ -4,6 +4,7 @@ import { NavbarDataModal } from './side-menu_helper';
 export const routes: NavbarDataModal[] = [
   { routerLink: '/dawana/pages/pharmacies', icon: 'pi pi-th-large', lable: 'PHARMACIES',  },
   { routerLink: '/dawana/pages/inspectors', icon: 'pi pi-users', lable: 'INSPECTORS',   },
+  { routerLink: '/dawana/pages/admins', icon: 'pi pi-users', lable: 'ADMINS',   },
   // { routerLink: '/dawana/pages/users', icon: 'pi pi-users', lable: 'USERS' ,roles:['SuperAdmin']},
   // { routerLink: '/dawana/pages/tickets', icon: 'pi pi-ticket', lable: 'TICKETS' ,roles:['admin','user','SuperAdmin']},
   // { routerLink: '/dawana/pages/direct-tickets', icon: 'pi pi-ticket', lable: 'DIRECTTICKETS' ,roles:['admin','user','SuperAdmin']},

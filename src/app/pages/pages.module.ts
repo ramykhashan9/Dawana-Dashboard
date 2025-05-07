@@ -41,6 +41,10 @@ import { AcceptRejectComponent } from './pharmacies/component/accept-reject/acce
 import { DetailsComponent } from './pharmacies/component/details/details.component';
 import { AssignToComponent } from './pharmacies/component/assign-to/assign-to.component';
 import { UploadDispensingComponent } from './pharmacies/component/upload-dispensing/upload-dispensing.component';
+import { AdminsComponent } from './admins/admins.component';
+import { CreateAdminComponent } from './admins/components/create-admin/create-admin.component';
+import { DeleteAdminComponent } from './admins/components/delete-admin/delete-admin.component';
+import { UpdateAdminComponent } from './admins/components/update-admin/update-admin.component';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -57,7 +61,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     AcceptRejectComponent,
     DetailsComponent,
     AssignToComponent,
-    UploadDispensingComponent
+    UploadDispensingComponent,
+    AdminsComponent,
+    CreateAdminComponent,
+    DeleteAdminComponent,
+    UpdateAdminComponent
   ],
   imports: [
     SharedModule,
