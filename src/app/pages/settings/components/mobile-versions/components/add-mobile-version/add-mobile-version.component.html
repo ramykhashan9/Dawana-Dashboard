@@ -1,0 +1,53 @@
+<div class="container " style="position: relative; height: 100%; " dir="rtl">
+    <form [formGroup]="addVersionGroup">
+        <div class="row">
+            <div class="col-6 my-3">
+                <label for="AndroidVersion">{{'ANDROIDVERSION' |translate}}</label>
+                <fieldset class="form-group">
+                    <input type="number" class="form-control" [placeholder]="'ANDROIDVERSION'|translate"
+                        aria-label="name" aria-describedby="basic-addon1" formControlName="AndroidVersion">
+                </fieldset>
+
+            </div>
+            <div class="col-6 my-3">
+                <label for="IosVersion">{{'IOSVERSION' |translate}}</label>
+                <fieldset class="form-group">
+                    <input type="number" class="form-control" [placeholder]="'IOSVERSION'|translate" aria-label="name"
+                        aria-describedby="basic-addon1" formControlName="IosVersion">
+                </fieldset>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <label for="AndroidStatus">{{'ANDROIDSTATUS' |translate}}</label>
+                <fieldset class="form-group">
+                    <span class="p-fluid">
+                        <p-dropdown id="AndroidStatus" formControlName="AndroidStatus" [options]="status"
+                            optionLabel=""></p-dropdown>
+                    </span>
+                </fieldset>
+            </div>
+            <div class="col-6">
+                <label for="IosStatus">{{'IOSSTATUS' |translate}}</label>
+                <fieldset class="form-group">
+                    <span class="p-fluid">
+                        <p-dropdown id="IosStatus" formControlName="IosStatus" [options]="status"
+                            optionLabel=""></p-dropdown>
+                    </span>
+                </fieldset>
+            </div>
+        </div>
+    </form>
+
+    <div class="row" style="width: 100%; position: absolute; bottom: 0; display: flex; justify-content: space-between;">
+        <button pButton type="button"
+            [style]="{'background':'#205692', 'padding':'10px 0px','color':'white', 'max-width':'150px','min-width':'100px','border-radius':'4px','border':'1px #205692 solid'}"
+            [label]="'CREATEMOBILEVERSION'|translate" (click)="addVersion()"></button>
+
+        <button pButton type="button"
+            [style]="{'background':'red',  'padding':'10px 0px','color':'white', 'max-width':'150px','min-width':'100px','border-radius':'4px','border':'1px red solid'}"
+            [label]="'CANCEL'| translate" class="ui-button-secondary" (click)="onCancel()"></button>
+    </div>
+
+</div>

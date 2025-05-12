@@ -9,6 +9,7 @@ import { PharmaciesService } from 'src/app/shared/services/pharmacies.service';
 import { AcceptRejectComponent } from './component/accept-reject/accept-reject.component';
 import { DetailsComponent } from './component/details/details.component';
 import { AssignToComponent } from './component/assign-to/assign-to.component';
+import { UploadDispensingComponent } from './component/upload-dispensing/upload-dispensing.component';
 
 @Component({
   selector: 'app-pharmacies',
@@ -111,10 +112,10 @@ export class PharmaciesComponent implements OnInit, OnDestroy {
     this.ref.onClose.subscribe((response) => {
       if (response && response.status == true) {
         this.getAllPharmacies();
-        this.messageService.add({ key: 'tr', severity: 'success', summary: 'Success', detail: response['message'] });
+        this.messageService.add({  key:'tl', severity: 'success', summary: 'Success', detail: response['message'] });
 
       } else {
-        this.messageService.add({ key: 'tr', severity: 'error', summary: 'Failed', detail: response['error']['message'] });
+        this.messageService.add({  key:'tl', severity: 'error', summary: 'Failed', detail: response['error']['message'] });
 
       }
     });
@@ -136,10 +137,10 @@ export class PharmaciesComponent implements OnInit, OnDestroy {
     this.ref.onClose.subscribe((response) => {
       if (response && response.status == true) {
         this.getAllPharmacies();
-        this.messageService.add({ key: 'tr', severity: 'success', summary: 'Success', detail: response['message'] });
+        this.messageService.add({  key:'tl', severity: 'success', summary: 'Success', detail: response['message'] });
 
       } else {
-        this.messageService.add({ key: 'tr', severity: 'error', summary: 'Failed', detail: response['error']['message'] });
+        this.messageService.add({  key:'tl', severity: 'error', summary: 'Failed', detail: response['error']['message'] });
 
       }
     });
@@ -157,5 +158,33 @@ export class PharmaciesComponent implements OnInit, OnDestroy {
       default:
         return "";
     }
+  }
+  uploadDipensingLetter(pharmacyId) {
+    this.ref = this.dialogService.open(UploadDispensingComponent, {
+      data: {
+        "pharmacyId": pharmacyId
+      },
+      header: "",
+      width: '700px',
+      height: "300px",
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+      maximizable: true,
+      style: { direction: 'rtl', padding: '10px', background: 'white' }
+    });
+
+    this.ref.onClose.subscribe((response) => {
+      if(response == undefined){
+        return;
+      }
+      if (response && response.status == true) {
+        this.getAllPharmacies();
+        this.messageService.add({  key:'tl', severity: 'success', summary: 'Success', detail: response['message'] });
+
+      } else {
+        this.messageService.add({  key:'tl', severity: 'error', summary: 'Failed', detail: response['error']['message'] });
+
+      }
+    });
   }
 }

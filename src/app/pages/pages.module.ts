@@ -45,6 +45,9 @@ import { AdminsComponent } from './admins/admins.component';
 import { CreateAdminComponent } from './admins/components/create-admin/create-admin.component';
 import { DeleteAdminComponent } from './admins/components/delete-admin/delete-admin.component';
 import { UpdateAdminComponent } from './admins/components/update-admin/update-admin.component';
+import { MobileVersionsComponent } from './settings/components/mobile-versions/mobile-versions.component';
+import { AddMobileVersionComponent } from './settings/components/mobile-versions/components/add-mobile-version/add-mobile-version.component';
+import { UpdateMobileVersionComponent } from './settings/components/mobile-versions/components/update-mobile-version/update-mobile-version.component';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -65,7 +68,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     AdminsComponent,
     CreateAdminComponent,
     DeleteAdminComponent,
-    UpdateAdminComponent
+    UpdateAdminComponent,
+    MobileVersionsComponent,
+    AddMobileVersionComponent,
+    UpdateMobileVersionComponent
   ],
   imports: [
     SharedModule,

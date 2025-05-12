@@ -67,7 +67,7 @@ export class ConfirmLoginComponent implements OnInit, OnDestroy {
           this.authService.currentAdminSubject.next(response.data);
           this.authMessage = response.message;
           this.isCodeValid = true && (this.length == 4);
-          this.messageService.add({ key: 'tr', severity: 'success', summary: 'Success', detail: this.authMessage });
+          this.messageService.add({  key:'tl', severity: 'success', summary: 'Success', detail: this.authMessage });
           this.spinner.hide();
           this.router.navigate(['/dawana/pages/pharmacies']);
 
@@ -77,7 +77,7 @@ export class ConfirmLoginComponent implements OnInit, OnDestroy {
           this.isCodeValid = false && (this.length == 4);
           this.spinner.hide();
           this.authMessage = response.error.message;
-          this.messageService.add({ key: 'tr', severity: 'error', summary: 'Error', detail: this.authMessage });
+          this.messageService.add({  key:'tl', severity: 'error', summary: 'Error', detail: this.authMessage });
         }
       );
   }
@@ -95,10 +95,10 @@ export class ConfirmLoginComponent implements OnInit, OnDestroy {
   resendCode() {
     let resendCodeSub$ = this.authService.resendCode(+this.userId).subscribe(
       (res) => {
-        this.messageService.add({ key: 'tr', severity: 'success', summary: 'Success', detail: res['message'] });
+        this.messageService.add({  key:'tl', severity: 'success', summary: 'Success', detail: res['message'] });
       },
       (error) => {
-        this.messageService.add({ key: 'tr', severity: 'error', summary: 'Failed', detail: error['error']['message'] });
+        this.messageService.add({  key:'tl', severity: 'error', summary: 'Failed', detail: error['error']['message'] });
       }
     );
 

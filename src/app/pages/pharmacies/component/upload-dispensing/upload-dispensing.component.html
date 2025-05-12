@@ -1,1 +1,49 @@
-<p>upload-dispensing works!</p>
+<div style="height: max-content;">
+    <div class="row">
+        <form [formGroup]="uploadGroup">
+            <div class="col-6">
+                <label for="document_expiry">{{"EXPIRYDATE"|translate}}</label>
+                <span class="p-fluid">
+                    <p-calendar dir="ltr" formControlName="document_expiry" dateFormat="dd.mm.yy"
+                        [showIcon]="true"></p-calendar>
+
+                </span>
+            </div>
+        </form>
+
+    </div>
+    <div class="row">
+        <div class="flex justify-content-center mt-3">
+            <span class="file-upload-wrapper">
+                <button type="button" class="custom-button"
+                    (click)="fileInput.click()">{{'CHOOSEFILE'|translate}}</button>
+                <!-- <span class="file-name">{{ fileName || 'No file chosen' }}</span> -->
+                <input #fileInput type="file" (change)="uploadFile($event)" [accept]="acceptedTypes"
+                    class="file-input" />
+            </span>
+        </div>
+        <div *ngIf="uploadedFile != null">
+            <h4>{{'SELECTEDFILES' |translate}}:</h4>
+            <div class="file-list">
+                <span *ngIf="uploadedFile.type.startsWith('image/')">
+                    <p-image [src]="uploadedFile.url" [alt]="uploadedFile.name" width="100"></p-image>
+                    <p-button icon="pi pi-trash" [rounded]="true" [text]="true" [style]="{'color':'red'}"
+                        (click)="removeFile()" />
+
+                </span>
+                <span *ngIf="!uploadedFile.type.startsWith('image/')">
+
+
+                    <p>{{ uploadedFile.name }} <span>
+                            <p-button icon="pi pi-trash" [rounded]="true" [text]="true" [style]="{'color':'red'}"
+                                (click)="removeFile()" />
+                        </span></p>
+                </span>
+
+            </div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center align-items-center mt-4">
+        <button class="btn " [style]="{'background':'#205692', 'color':'white'}" [disabled]="isSubmitted"
+            (click)="uploadDoc()">{{'UPLOADDOCUMNETS'|translate}}</button>
+    </div>

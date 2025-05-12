@@ -1,11 +1,11 @@
-<p-toast position="top-right" key="tr"></p-toast>
+<p-toast position="top-left" key="tl"></p-toast>
 
 <div class="row">
     <h4 class="col-md-6 my-3">{{"ADMINS" |translate}}</h4>
 
     <div class="col-md-6 my-3" style="text-align: end;">
         <button class="btn px-5" (click)="createAdmin()"
-            style="background-color: #1E2337; color: white;">{{'CREATEADMINS'|translate}}</button>
+            style="background-color: #205692; color: white;">{{'CREATEADMINS'|translate}}</button>
     </div>
 </div>
 
@@ -40,13 +40,13 @@
                 <td class="d-flex justify-content-center">
                     <span>
                         <button class="py-2 "
-                            style="background-color: #1E2337; color: #fff;  border-radius:5px; min-width: 145px;  "
+                            style="background-color: #205692;border: none; color: #fff;  border-radius:5px; min-width: 145px;  "
                             (click)="editAdmin(admins)" type="button">{{'EDIT'|translate}} <span
                                 class="pi pi-pen-to-square"></span></button>
                     </span>
                     <span class="mx-3">
                         <button class="py-2 "
-                            style="background-color: #1E2337; color: #fff;  border-radius:5px; min-width: 145px;  "
+                            style="background-color: #205692;border: none; color: #fff;  border-radius:5px; min-width: 145px;  "
                             (click)="deleteAdmin(admins.id)" type="button">{{'DELETE'|translate}} <span
                                 class="pi pi-pen-to-square"></span></button>
                     </span>

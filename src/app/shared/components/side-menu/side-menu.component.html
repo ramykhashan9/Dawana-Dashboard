@@ -2,7 +2,7 @@
     <div>
         <ng-template [ngIf]="!collapsed">
             <a class="logo" (click)="strech()"><img src="
-                assets/logo_item.png" alt="" width="60px" style="margin: 10px;"></a>
+                assets/dawana.png" alt="" width="60px" style="margin: 10px;"></a>
         </ng-template>
         <!-- <div style="  text-align: end;">
             <ng-template [ngIf]="collapsed">
@@ -13,7 +13,7 @@
         </div> -->
     </div>
     <div [style]="{'width':'250px'}" class="logo-container text-center" *ngIf="collapsed">
-        <img src="assets/logo.png" alt="" width="220px" class="img">
+        <img src="assets/dawana.png" alt="" width="220px" class="img">
 
     </div>
 
@@ -21,16 +21,43 @@
         <ul class="sidenav-nav">
             <li class="sidenav-nav-item" *ngFor="let tab of navbarData">
 
-        
-                <a *ngIf="!tab.subItem || (tab.subItem  && tab.subItem.length === 0)" [routerLink]="[tab.routerLink]"
+
+                <!-- <a *ngIf="!tab.subItem || (tab.subItem  && tab.subItem.length === 0)" [routerLink]="[tab.routerLink]"
                     routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="sidenav-nav-link">
                     <i class="sidenav-link-icon" [ngClass]="[tab.icon]"></i>
                     <span class="sidenav-link-text" *ngIf="collapsed">
                         {{tab.lable }}
                     </span>
+                </a> -->
+                <!-- Second SubItem-->
+                <a (click)="handleClick(tab,i)" [class]="i==selectedTab?'activate sidenav-nav-link ':'sidenav-nav-link'"
+                    [routerLink]="[tab.routerLink]" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
+                    *ngIf="tab.subItem && tab.subItem.length >0">
+                    <span>
+                        <i class="sidenav-link-icon" [ngClass]="[tab.icon]"></i>
+                        <span class="sidenav-link-text">
+                            {{tab.lable}}
+                        </span>
+                    </span>
+                    <i *ngIf="tab.subItem " class="menu-collapse-icon" 
+                        [ngClass]="!tab.expanded ? 'pi pi-angle-right' : 'pi pi-angle-down'"></i>
+                </a>
+                <a (click)="handleClick(tab,i)" *ngIf="!tab.subItem || (tab.subItem  && tab.subItem.length === 0)"
+                    routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" [routerLink]="[tab.routerLink]"
+                    [class]="i==selectedTab?'activate sidenav-nav-link ':'sidenav-nav-link'">
+                    <i class="sidenav-link-icon" [ngClass]="[tab.icon]"></i>
+                    <span class="sidenav-link-text">
+                        {{tab.lable}}
+                    </span>
                 </a>
 
+                <div *ngIf=" tab.subItem && tab.subItem.length > 0">
+                    <app-sublevel-menu [data]="tab" [expanded]="tab.expanded" [multiple]="multiple">
+                    </app-sublevel-menu>
+                </div>
+
             </li>
+
             <div></div>
             <li class="sidenav-nav-item">
                 <a (click)="logout()" class="logout">

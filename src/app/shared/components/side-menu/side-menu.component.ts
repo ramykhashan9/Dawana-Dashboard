@@ -18,28 +18,30 @@ export class SideMenuComponent implements OnInit, OnDestroy {
   adminRole: string;
   subscriptions: Subscription = new Subscription();
   userDepartmentId: string;
-  
+  multiple: boolean = false;
+
   ngOnInit() {
-   
+
     // this.adminRole = this.storage.getAdminRole();
     // if (this.adminRole === '"user"') {
-      this.navbarData = routes ;
-      // this.navbarData = routes.filter(e => e.roles.includes('user'));
+    this.navbarData = routes;
+    // this.navbarData = routes.filter(e => e.roles.includes('user'));
     // }
- 
+
     this.translateLabels();
   }
   constructor(public translate: TranslateService,
-   private authService: AuthService,
-   private router: Router,
+    private authService: AuthService,
+    private router: Router,
     // private storage: Storage,
-    ) { }
+  ) { }
   @Output() onToggleSideNav: EventEmitter<boolean> = new EventEmitter();
   @Input() collapsed: boolean = true;
 
 
   translateLabels() {
     let subscription2$;
+    let subscription3$;
     let subscription$ = this.translate.get('LOGOUT').subscribe(
       (res) => {
         this.logoutLable = res;
@@ -51,9 +53,20 @@ export class SideMenuComponent implements OnInit, OnDestroy {
           item.lable = res;
         }
       );
+      if (item.subItem) {
+        for (let i of item.subItem) {
+          subscription3$ = this.translate.get(i.lable).subscribe(
+            (res) => {
+              i.lable = res;
+            }
+          );
+        }
+      }
     }
+    
     this.subscriptions.add(subscription$);
     this.subscriptions.add(subscription2$);
+    this.subscriptions.add(subscription3$);
   }
   strech() {
     this.collapsed = !this.collapsed;
@@ -67,9 +80,22 @@ export class SideMenuComponent implements OnInit, OnDestroy {
     this.onToggleSideNav.emit(this.collapsed,
     );
   }
+  selectedTab: number = -1;
+
+  handleClick(item: NavbarDataModal, index: number) {
+    if (!this.multiple) {
+      for (let modelItem of this.navbarData) {
+        if (item !== modelItem && modelItem.expanded) {
+          modelItem.expanded = false;
+        }
+      }
+    }
+    item.expanded = !item.expanded;
+    this.selectedTab = index;
+  }
 
   logout() {
-   this.authService.logout();
+    this.authService.logout();
     this.router.navigate(['/dawana/auth/login']);
   }
   ngOnDestroy() {

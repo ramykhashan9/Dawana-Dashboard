@@ -19,14 +19,21 @@ export class PharmaciesService {
       "pharmacy_id": pharmacyId
     });
   }
-   assignToInspector(inspectorId: number,pharmacyID:number) {
+  assignToInspector(inspectorId: number, pharmacyID: number) {
     return this.http.post<any>(`${this.HostUrl}/assign-pharmacy-to-inspector`, {
-      
-        "pharmacy_id": pharmacyID,
-        "inspector_id": inspectorId
- 
-      
-     });
+
+      "pharmacy_id": pharmacyID,
+      "inspector_id": inspectorId
+
+
+    });
+  }
+  uploadDispenseLetter(pharmacyId: number, dispenseLetter: string, documnetExipry: string) {
+    return this.http.post<any>(`${this.HostUrl}/upload-dispenseLetter`, {
+      "pharmacy_id": pharmacyId,
+      "dispense_letter": dispenseLetter,
+      "document_expiry": documnetExipry
+    });
   }
 }
 

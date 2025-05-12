@@ -91,10 +91,10 @@ export class AdminsComponent implements OnInit, OnDestroy {
     this.ref.onClose.subscribe((response) => {
       if (response && response.status == true) {
         this.getAlAdmins();
-        this.messageService.add({ key: 'tr', severity: 'success', summary: 'Success', detail: response['message'] });
+        this.messageService.add({  key:'tl', severity: 'success', summary: 'Success', detail: response['message'] });
 
       } else {
-        this.messageService.add({ key: 'tr', severity: 'error', summary: 'Failed', detail: response['error']['message'] });
+        this.messageService.add({  key:'tl', severity: 'error', summary: 'Failed', detail: response['error']['message'] });
 
       }
       // this.messageService.add({ severity: 'info', summary: 'Filter', detail: "" });
@@ -120,10 +120,10 @@ export class AdminsComponent implements OnInit, OnDestroy {
     this.ref.onClose.subscribe((response) => {
       if (response && response.status == true) {
         this.getAlAdmins();
-        this.messageService.add({ key: 'tr', severity: 'success', summary: 'Success', detail: response['message'] });
+        this.messageService.add({  key:'tl', severity: 'success', summary: 'Success', detail: response['message'] });
 
       } else {
-        this.messageService.add({ key: 'tr', severity: 'error', summary: 'Failed', detail: response['error']['message'] });
+        this.messageService.add({  key:'tl', severity: 'error', summary: 'Failed', detail: response['error']['message'] });
 
       }
     });
@@ -145,10 +145,10 @@ export class AdminsComponent implements OnInit, OnDestroy {
     this.ref.onClose.subscribe((response) => {
       if (response && response.status == true) {
         this.getAlAdmins();
-        this.messageService.add({ key: 'tr', severity: 'success', summary: 'Success', detail: response['message'] });
+        this.messageService.add({  key:'tl', severity: 'success', summary: 'Success', detail: response['message'] });
 
       } else {
-        this.messageService.add({ key: 'tr', severity: 'error', summary: 'Failed', detail: response['error']['message'] });
+        this.messageService.add({  key:'tl', severity: 'error', summary: 'Failed', detail: response['error']['message'] });
 
       }
     });

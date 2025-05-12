@@ -7,6 +7,8 @@ import { InspectorsComponent } from './inspectors/inspectors.component';
 import { InspectorRedolver } from '../shared/resolver/inspectors.resolver';
 import { AdminsRedolver } from '../shared/resolver/admins.resolver';
 import { AdminsComponent } from './admins/admins.component';
+import { MobileVersionsComponent } from './settings/components/mobile-versions/mobile-versions.component';
+import { MobileVersionResolver } from '../shared/resolver/mobile-versions';
 //import { AuthGuardService } from '../shared/guards/auth-guard.service';
 
 const routes: Routes = [
@@ -49,7 +51,25 @@ const routes: Routes = [
 
     },
     children: []
+  }, {
+    path: 'settings',
+    redirectTo: 'mobile-versions',
+    pathMatch: 'full',
+  }, {
+    path: 'mobile-versions',
+    component: MobileVersionsComponent,
+    data: {
+      title: 'Page',
+    },
+    canActivate: [AuthGuardService],
+    resolve: {
+
+      mobileVersions: MobileVersionResolver,
+
+    },
+    children: []
   },
+
 ];
 
 @NgModule({

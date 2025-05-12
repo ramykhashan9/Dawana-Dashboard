@@ -146,7 +146,7 @@
   "ASSIGNEDUSER": "اسم المستخدم",
   "SELECTEDFILES": "المستندات المحدده",
   "Download": "تحميل",
-  "CHOOSEFILE": "رفع مستند",
+  "CHOOSEFILE": "تحديد مستند",
   "TICKETHISTORY": "تاريخ الاستفسار",
   "TITLE": "العنوان",
   "BY": "بواسطة",
@@ -202,5 +202,17 @@
   "MIDDLENAME": "الأسم الأوسط",
   "LASTNAME": "الأسم الأخير",
   "GENDER": "النوع",
-  "VERIFY": "مؤكد"
+  "VERIFY": "مؤكد",
+  "MOBILEVERSIONS": "الإصدارات المحمولة",
+  "ANDROIDVERSION": "إصدار أندرويد",
+  "IOSVERSION": "IOS إصدار",
+  "ANDROIDSTATUS": "حالة أندرويد",
+  "IOSSTATUS": "IOS حالة نظام التشغيل",
+  "LASTCHANGEDDATE": "تاريخ آخر تغيير",
+  "LASTCHANGEDBY": "آخر تعديل بواسطة",
+  "CREATEMOBILEVERSION": "إنشاء نسخة للجوال",
+  "UPDATEMOBILEVERSION": "تحديث النسخة المحمولة",
+  "NOVERSIONSFOUND": "لم يتم العثور على أي إصدارات",
+  "EXPIRYDATE":"تاريخ انتهاء الصلاحية"
+
 }

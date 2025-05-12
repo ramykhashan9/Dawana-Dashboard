@@ -1,0 +1,59 @@
+<p-toast position="top-left" key="tl"></p-toast>
+
+<div class="row">
+    <h4 class="col-md-6 my-3">{{"MOBILEVERSIONS" |translate}}</h4>
+
+    <div class="col-md-6 my-3" style="text-align: end;">
+        <button class="btn px-5" (click)="createMobileVersion()"
+            style="background-color: #205692; color: white;">{{'CREATEMOBILEVERSION'|translate}}</button>
+    </div>
+</div>
+
+<div class="col mt-5">
+    <p-table selectionMode="single" *ngIf="mobileversions.length > 0" [dir]="dir" [value]="mobileversions"
+        (sortFunction)="customSort($event)" [customSort]="true" [paginator]="true" [scrollable]="false"
+        scrollWidth="800px" [rows]="8" [showCurrentPageReport]="true" [tableStyle]="{ 'min-width': '50rem' }"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th pSortableColumn="id" style="min-width: 230px;" *ngFor="let head of headers">
+                    {{head|translate}}<p-sortIcon [field]="head"></p-sortIcon></th>
+                <th style="min-width: 250px;">{{'ACTION'|translate}} </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-mobileversions let-columns="columns">
+            <tr class="m-5">
+
+                <td>{{mobileversions.id}}</td>
+                <td>{{mobileversions.AndroidVersion}}</td>
+                <td>{{mobileversions.IosVersion}}</td>
+                <td>{{mobileversions.AndroidStatus}}</td>
+                <td>{{mobileversions.IosStatus}}</td>
+                <td>{{mobileversions.createDateTime | date}}</td>
+                <td>{{mobileversions.createdBy}}</td>
+                <td>{{mobileversions.lastChangedDateTime | date}}</td>
+                <td>{{mobileversions.lastChangedBy}}</td>
+
+
+            <td>
+                <span>
+                    <button class="py-2 "
+                        style="background-color: #205692;border: none; color: #fff;  border-radius:5px; min-width: 145px;  "
+                        (click)="editMobileVersion(mobileversions)" type="button">{{'EDIT'|translate}} <span
+                            class="pi pi-pen-to-square"></span></button>
+                </span>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="paginatorleft">
+            <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+        </ng-template>
+        <ng-template pTemplate="paginatorright">
+            <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+        </ng-template>
+    </p-table>
+    <p-card *ngIf="mobileversions.length == 0" class="d-flex justify-content-center rounded">
+        <h4 class="mx-5 my-3">{{'NOVERSIONSFOUND'| translate}}</h4>
+    </p-card>
+
+</div>

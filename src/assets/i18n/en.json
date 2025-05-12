@@ -199,5 +199,16 @@
   "DATACOMPLETED": "Change to InProgress",
   "UPLOADDOCUMNETS": "Upload Documnets",
   "UPLOADDOC": "Upload Documnet",
-  "PHARMACIES": "Pharmacies"
+  "PHARMACIES": "Pharmacies",
+  "MOBILEVERSIONS":"Mobile Versions",
+  "ANDROIDVERSION":"Android Version",
+  "IOSVERSION":"Ios Version",
+  "ANDROIDSTATUS":"Android Status",
+  "IOSSTATUS":"Ios Status",
+  "LASTCHANGEDDATE":"Last Changed Date",
+  "LASTCHANGEDBY":"Last Changed By",
+  "CREATEMOBILEVERSION":"Create Mobile Version",
+  "UPDATEMOBILEVERSION":"Update Mobile Verison",
+  "NOVERSIONSFOUND":"No Versions Found",
+  "EXPIRYDATE":"Expiry Date"
 }

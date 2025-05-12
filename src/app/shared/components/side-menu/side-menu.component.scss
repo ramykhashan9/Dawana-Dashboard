@@ -1,12 +1,25 @@
 .sidenav {
-    background: #1E2337;
+    background-image: url('/assets/login.png');
+    //background: #205692;
     transition: all 0.5s ease;
 
     top: 0;
     width: 0px;
-    min-height:  100vh;
-   max-height:  auto;
+    min-height: 100vh;
+    max-height: auto;
     box-shadow: 0.063rem 0 1.25rem 0 #8690a3;
+
+    /**
+     background: #ffffff;
+    transition: all 0.5s ease;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    width: 250px;
+    max-width: 250px;
+    height: 100vh;
+    box-shadow: 0.063rem 0 1.25rem 0 #8690a3;
+    */
 
     .logo-container {
         height: 200px;
@@ -16,18 +29,16 @@
         text-align: center;
         justify-content: center;
         display: flex;
- 
-
-
     }
-    .img{
-          text-align: center;
+
+    .img {
+        text-align: center;
     }
 }
 
 .sidenav-collapsed {
     width: auto;
-    
+
 }
 
 .sidenav-nav {
@@ -44,8 +55,8 @@
     .sidenav-nav-item {
         width: 100%;
         margin-bottom: 2px;
-
-
+        
+        
 
         .sidenav-nav-link {
             display: flex;
@@ -112,29 +123,38 @@
 }
 
 .sublevel-nav {
+    display: flex;
+    justify-content: center;
     list-style: none;
-    margin-left: 10px;
+    // margin-left: 10px;
 
     .sublevel-nav-item {
+        margin-top: 3px;
+
         .sublevel-nav-link {
             display: flex;
             align-items: center;
             height: 3rem;
-            color: #898989;
+            color: #fff;
             text-decoration: none;
             border-radius: 2px;
             transition: all 0.3s ease;
 
             .sublevel-link-icon {
-                font-size: 4px;
+                font-size: 22px;
                 width: 2rem;
                 min-width: 2rem;
                 margin: 0 0.5rem;
                 text-align: center;
             }
+            
 
             .sublevel-link-text {
-                margin-left: 0.8rem;
+                margin: 0;
+                word-break: none;
+
+               // white-space: norwarp;
+           //     margin-left: 0.8rem;
             }
         }
 
@@ -145,9 +165,10 @@
 }
 
 
-.active-sublevel {
-    color: #fff !important;
 
+.active-sublevel {
+    background: #fff !important;
+    color: #000 !important;
     opacity: 1 !important;
 }
 

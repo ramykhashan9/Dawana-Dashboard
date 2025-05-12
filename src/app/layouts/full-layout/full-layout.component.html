@@ -5,7 +5,7 @@
     <app-nav-bar [collapseSideMenu]='collappeSideMenu' [collapseActivity]="collappeActivivty"
       (sideMenuCollapse)="getCollapsedSideMenu($event)" (activityCollapse)="getCollapsedActivity($event)"></app-nav-bar>
 
-      <p-toast position="top-right" key="tr"></p-toast>
+      <p-toast position="top-left" key="tl"></p-toast>
     <router-outlet></router-outlet>
   </div>
   <app-activity [ngClass]="collappeActivivty?'menu-activity':'menu-close'"
@@ -89,7 +89,7 @@
         <i class="pi pi-bars"></i>
      
       </button> -->
-      <p-toast position="top-right" key="tr"></p-toast>
+      <p-toast position="top-left" key="tl"></p-toast>
     </mat-toolbar>
   
    <div class="container">

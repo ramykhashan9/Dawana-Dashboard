@@ -14,6 +14,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { MessageService } from 'primeng/api';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
+import { SublevelMenuComponent } from './components/side-menu/sublevel-menu.component';
 
 
 
@@ -23,6 +24,8 @@ import { PasswordModule } from 'primeng/password';
     NavBarComponent,
     ActivityComponent,
     ChangeMyPasswordComponent,
+    SublevelMenuComponent,
+
   ],
   imports: [
     CommonModule,

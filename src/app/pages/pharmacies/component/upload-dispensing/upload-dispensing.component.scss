@@ -1,0 +1,81 @@
+.is-late-card{
+    border: 1px solid red;
+}
+
+
+
+.is-late-header{
+    background-color: red;
+}
+
+.is-late-header-text{
+    border: 1px solid white; border-radius: 5px; padding: 2px 6px; margin-right: 10px;
+}
+.is-late-header-text2{
+    color: white; font-size: 17px;
+}.is-late-header-check{
+    color: white;
+   // border: 1px solid white;
+
+}
+
+.custom-dynamic-dialog .ui-dialog-titlebar {
+    background-color: #007bff !important; /* Your desired color */
+    color: white !important;              /* Optional: Text color */
+  }
+
+  .image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+  }
+  
+  .image-grid img {
+    width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    object-fit: cover;
+  }
+
+  .file-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
+  }
+  
+  .file-list img {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    object-fit: cover;
+  }
+
+  .file-upload-wrapper {
+    // display: flex;
+    // align-items: center;
+   
+     .custom-button {
+       background-color: #205692;
+       color: #fff;
+       border: none;
+       padding: 8px 16px;
+       cursor: pointer;
+       border-radius: 4px;
+       font-size: 14px;
+     //  margin-right: 8px;
+     }
+   
+     .file-name {
+       font-size: 14px;
+       color: #555;
+     }
+   
+     .file-input {
+       display: none; /* Hides the default file input */
+     }
+   }
+
+   .red-border{
+    border: red solid 1px;
+    border-radius:10px;
+   }
