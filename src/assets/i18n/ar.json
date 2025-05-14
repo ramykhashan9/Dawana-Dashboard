@@ -213,6 +213,8 @@
   "CREATEMOBILEVERSION": "إنشاء نسخة للجوال",
   "UPDATEMOBILEVERSION": "تحديث النسخة المحمولة",
   "NOVERSIONSFOUND": "لم يتم العثور على أي إصدارات",
-  "EXPIRYDATE":"تاريخ انتهاء الصلاحية"
+  "EXPIRYDATE":"تاريخ انتهاء الصلاحية",
+  "REASSIGN":"إعادة التعيين"
+
 
 }

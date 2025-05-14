@@ -44,11 +44,15 @@
                             (click)="editAdmin(admins)" type="button">{{'EDIT'|translate}} <span
                                 class="pi pi-pen-to-square"></span></button>
                     </span>
-                    <span class="mx-3">
+                     <span *ngIf="admins.role == 'regional admin' || admins.role == 'sub admin'" class="mx-3">
                         <button class="py-2 "
                             style="background-color: #205692;border: none; color: #fff;  border-radius:5px; min-width: 145px;  "
-                            (click)="deleteAdmin(admins.id)" type="button">{{'DELETE'|translate}} <span
-                                class="pi pi-pen-to-square"></span></button>
+                            (click)="reAssignAdmin(admins)" type="button">{{'REASSIGN'|translate}}</button>
+                    </span>
+                    <span class="mx-2" >
+                        <button class="py-2 "
+                            style="background-color: #205692;border: none; color: #fff;  border-radius:5px; min-width: 145px;  "
+                            (click)="deleteAdmin(admins.id)" type="button">{{'DELETE'|translate}}</button>
                     </span>
                 </td>
             </tr>

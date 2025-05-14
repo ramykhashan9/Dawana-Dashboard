@@ -6,7 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
-// import { Storage } from '../../config';
+import { Storage } from '../../config';
 @Component({
   selector: 'app-side-menu',
   templateUrl: './side-menu.component.html',
@@ -21,24 +21,22 @@ export class SideMenuComponent implements OnInit, OnDestroy {
   multiple: boolean = false;
 
   ngOnInit() {
-
-    // this.adminRole = this.storage.getAdminRole();
-    // if (this.adminRole === '"user"') {
-    this.navbarData = routes;
-    // this.navbarData = routes.filter(e => e.roles.includes('user'));
-    // }
-
+    this.setSideMenuTabs();
     this.translateLabels();
   }
   constructor(public translate: TranslateService,
     private authService: AuthService,
     private router: Router,
-    // private storage: Storage,
+    private storage: Storage,
   ) { }
   @Output() onToggleSideNav: EventEmitter<boolean> = new EventEmitter();
   @Input() collapsed: boolean = true;
 
+  setSideMenuTabs() {
+    this.adminRole = this.storage.getRole().replace(/"/g, '');
+    this.navbarData = routes.filter(e => e.roles.includes(this.adminRole));
 
+  }
   translateLabels() {
     let subscription2$;
     let subscription3$;
@@ -63,7 +61,7 @@ export class SideMenuComponent implements OnInit, OnDestroy {
         }
       }
     }
-    
+
     this.subscriptions.add(subscription$);
     this.subscriptions.add(subscription2$);
     this.subscriptions.add(subscription3$);

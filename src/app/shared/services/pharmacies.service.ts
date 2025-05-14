@@ -35,5 +35,11 @@ export class PharmaciesService {
       "document_expiry": documnetExipry
     });
   }
+
+  pharmacySearchByName(name: string) {
+    return this.http.post<any>(`${this.config.ApiUrl}dawana-service/api/v1/pharmacy/search-by-name`, {
+      "name": name,
+    });
+  }
 }
 

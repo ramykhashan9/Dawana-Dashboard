@@ -9,6 +9,7 @@ import { AdminService } from 'src/app/shared/services/admin.service';
 import { DeleteAdminComponent } from './components/delete-admin/delete-admin.component';
 import { UpdateAdminComponent } from './components/update-admin/update-admin.component';
 import { CreateAdminComponent } from './components/create-admin/create-admin.component';
+import { ReAssignComponent } from './components/re-assign/re-assign.component';
 
 @Component({
   selector: 'app-admins',
@@ -82,13 +83,16 @@ export class AdminsComponent implements OnInit, OnDestroy {
     this.ref = this.dialogService.open(CreateAdminComponent, {
       header: this.addAdminText,
       width: '700px',
-      height: "400px",
+      height: "auto",
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
       maximizable: true,
       style: { direction: 'rtl', padding: '10px', background: 'white' }
     });
     this.ref.onClose.subscribe((response) => {
+      if(response == undefined){
+        return;
+      }
       if (response && response.status == true) {
         this.getAlAdmins();
         this.messageService.add({  key:'tl', severity: 'success', summary: 'Success', detail: response['message'] });
@@ -118,6 +122,37 @@ export class AdminsComponent implements OnInit, OnDestroy {
     });
 
     this.ref.onClose.subscribe((response) => {
+      if(response == undefined){
+        return;
+      }
+      if (response && response.status == true) {
+        this.getAlAdmins();
+        this.messageService.add({  key:'tl', severity: 'success', summary: 'Success', detail: response['message'] });
+
+      } else {
+        this.messageService.add({  key:'tl', severity: 'error', summary: 'Failed', detail: response['error']['message'] });
+
+      }
+    });
+  } 
+  reAssignAdmin(admin: Admins) {
+    this.ref = this.dialogService.open(ReAssignComponent, {
+      data: {
+        'admin': admin
+      },
+      header: this.editAdminText,
+      width: '700px',
+      height: "auto",
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+      maximizable: true,
+      style: { direction: 'rtl', padding: '10px', background: 'white' }
+    });
+
+    this.ref.onClose.subscribe((response) => {
+      if(response == undefined){
+        return;
+      }
       if (response && response.status == true) {
         this.getAlAdmins();
         this.messageService.add({  key:'tl', severity: 'success', summary: 'Success', detail: response['message'] });
@@ -143,6 +178,9 @@ export class AdminsComponent implements OnInit, OnDestroy {
     });
 
     this.ref.onClose.subscribe((response) => {
+      if(response == undefined){
+        return;
+      }
       if (response && response.status == true) {
         this.getAlAdmins();
         this.messageService.add({  key:'tl', severity: 'success', summary: 'Success', detail: response['message'] });

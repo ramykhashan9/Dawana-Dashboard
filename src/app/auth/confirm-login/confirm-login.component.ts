@@ -62,6 +62,7 @@ export class ConfirmLoginComponent implements OnInit, OnDestroy {
           console.log(response);
           this.storage.setToken(response.data["access_token"]);
           this.storage.setUserId(response.data["id"]);
+          this.storage.setRole(response.data['role']);
        
           this.storage.setCurrentAdmin(response.data);
           this.authService.currentAdminSubject.next(response.data);

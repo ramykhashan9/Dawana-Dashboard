@@ -24,9 +24,7 @@ export class DeleteAdminComponent implements OnDestroy {
 
   onCancel() {
     this.ref.close(
-      {
-        "name": null
-      }
+      undefined
     );
   }
   deleteAdmin() {

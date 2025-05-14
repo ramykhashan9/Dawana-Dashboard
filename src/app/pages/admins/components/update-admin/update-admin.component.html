@@ -1,5 +1,5 @@
-<div class="container " style="position: relative; height: 100%; " dir="rtl">
-    <form [formGroup]="editAdminGroup">
+<div class="d-flex flex-column justify-content-between" style=" height: 100%; " dir="rtl">
+    <form [formGroup]="editAdminGroup" style="min-height:auto;">
         <!-- MARK: Name And Role Info  -->
         <div class="row">
             <div class="col-6 my-3">
@@ -10,8 +10,7 @@
                 <label for="role">{{'ROLE' |translate}}</label>
                 <fieldset class="form-group">
                     <span class="p-fluid">
-                        <p-dropdown id="role" formControlName="role" [options]="inspectorRole"
-                            optionLabel=""></p-dropdown>
+                        <p-dropdown id="role" formControlName="role" [options]="adminRole" optionLabel=""></p-dropdown>
                     </span>
                 </fieldset>
             </div>
@@ -28,16 +27,19 @@
                     aria-describedby="basic-addon1" formControlName="password">
             </div>
         </div>
+        
     </form>
+    <div style="height:auto; margin-top: 100px;">
+        <div class="row justify-content-between">
+            <button pButton type="button"
+                [style]="{'background':'#205692', 'padding':'10px 0px','color':'white', 'max-width':'150px','min-width':'100px','border-radius':'4px','border':'1px #205692 solid'}"
+                [label]="'EDIT'|translate" (click)="addAdmin()"></button>
 
-    <div class="row" style="width: 100%; position: absolute; bottom: 0; display: flex; justify-content: space-between;">
-        <button pButton type="button"
-            [style]="{'background':'#205692', 'padding':'10px 0px','color':'white', 'max-width':'150px','min-width':'100px','border-radius':'4px','border':'1px #205692 solid'}"
-            [label]="'EDIT'|translate" (click)="addAdmin()"></button>
-
-        <button pButton type="button"
-            [style]="{'background':'red',  'padding':'10px 0px','color':'white', 'max-width':'150px','min-width':'100px','border-radius':'4px','border':'1px red solid'}"
-            [label]="'CANCEL'| translate" class="ui-button-secondary" (click)="onCancel()"></button>
+            <button pButton type="button"
+                [style]="{'background':'red',  'padding':'10px 0px','color':'white', 'max-width':'150px','min-width':'100px','border-radius':'4px','border':'1px red solid'}"
+                [label]="'CANCEL'| translate" class="ui-button-secondary" (click)="onCancel()"></button>
+        </div>
     </div>
+
 
 </div>

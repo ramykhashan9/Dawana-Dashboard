@@ -47,6 +47,13 @@ export class Storage {
   getUserId(): string {
     return this.getLocalStorage('UserId');
   }
+  setRole(role: string) {
+    this.setLocalStorage('role', role);
+  }
+
+  getRole(): string {
+    return this.getLocalStorage('role');
+  }
 
   removeToken(): any {
     return this.removeLocalStorage('token');
@@ -54,6 +61,9 @@ export class Storage {
  
   removeUserId(): any {
     return this.removeLocalStorage('UserId');
+  }
+  removeRole(): any {
+    return this.removeLocalStorage('role');
   }
   // setAdminRole(role: string) {
   //   this.setLocalStorage('role', role);
@@ -70,6 +80,7 @@ export class Storage {
     this.removeCurrentAdmin();
     this.removeToken();
      this.removeUserId();
+     this.removeRole();
     // this.removeAdminRole();
     
     this.removeLocalStorage('admin');

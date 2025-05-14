@@ -210,5 +210,6 @@
   "CREATEMOBILEVERSION":"Create Mobile Version",
   "UPDATEMOBILEVERSION":"Update Mobile Verison",
   "NOVERSIONSFOUND":"No Versions Found",
-  "EXPIRYDATE":"Expiry Date"
+  "EXPIRYDATE":"Expiry Date",
+  "REASSIGN":"Reassign"
 }

@@ -48,6 +48,7 @@ import { UpdateAdminComponent } from './admins/components/update-admin/update-ad
 import { MobileVersionsComponent } from './settings/components/mobile-versions/mobile-versions.component';
 import { AddMobileVersionComponent } from './settings/components/mobile-versions/components/add-mobile-version/add-mobile-version.component';
 import { UpdateMobileVersionComponent } from './settings/components/mobile-versions/components/update-mobile-version/update-mobile-version.component';
+import { ReAssignComponent } from './admins/components/re-assign/re-assign.component';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -71,7 +72,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     UpdateAdminComponent,
     MobileVersionsComponent,
     AddMobileVersionComponent,
-    UpdateMobileVersionComponent
+    UpdateMobileVersionComponent,
+    ReAssignComponent
   ],
   imports: [
     SharedModule,
