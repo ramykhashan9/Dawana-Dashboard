@@ -32,9 +32,9 @@ export class PharmaciesComponent implements OnInit, OnDestroy {
     "SIGNNAME",
     "STATUS",
     "PHARMACYTYPE",
+    "GOVERNORATE",
     "CREATEDDATE",
     "CREATEDBY",
-
 
   ]
   ngOnDestroy(): void {
@@ -52,14 +52,17 @@ export class PharmaciesComponent implements OnInit, OnDestroy {
       const response = this.route.snapshot.data['pharmacies'];
       if (response && response.status) {
         this.pharmacies = response.data['pharmacies'];
+        this.totalRecords = response.data['count'];
       }
     } catch (e) { }
   }
-  getAllPharmacies() {
-    let getPpharmaciesSubscriptions = this.pharmaciesService.getAllPharmacies({}).subscribe(
+  getAllPharmacies(skip:number=0,take:number=10) {
+    let getPpharmaciesSubscriptions = this.pharmaciesService.getAllPharmacies({},skip,take).subscribe(
       (res) => {
         this.pharmacies = res['data']['pharmacies'];
-      }, () => {
+        this.totalRecords = res['data']['count'];
+      }, (error) => {
+        console.log(error);
 
       });
     this.subscriptions.add(getPpharmaciesSubscriptions);
@@ -112,10 +115,10 @@ export class PharmaciesComponent implements OnInit, OnDestroy {
     this.ref.onClose.subscribe((response) => {
       if (response && response.status == true) {
         this.getAllPharmacies();
-        this.messageService.add({  key:'tl', severity: 'success', summary: 'Success', detail: response['message'] });
+        this.messageService.add({ key: 'tl', severity: 'success', summary: 'Success', detail: response['message'] });
 
       } else {
-        this.messageService.add({  key:'tl', severity: 'error', summary: 'Failed', detail: response['error']['message'] });
+        this.messageService.add({ key: 'tl', severity: 'error', summary: 'Failed', detail: response['error']['message'] });
 
       }
     });
@@ -137,10 +140,10 @@ export class PharmaciesComponent implements OnInit, OnDestroy {
     this.ref.onClose.subscribe((response) => {
       if (response && response.status == true) {
         this.getAllPharmacies();
-        this.messageService.add({  key:'tl', severity: 'success', summary: 'Success', detail: response['message'] });
+        this.messageService.add({ key: 'tl', severity: 'success', summary: 'Success', detail: response['message'] });
 
       } else {
-        this.messageService.add({  key:'tl', severity: 'error', summary: 'Failed', detail: response['error']['message'] });
+        this.messageService.add({ key: 'tl', severity: 'error', summary: 'Failed', detail: response['error']['message'] });
 
       }
     });
@@ -174,17 +177,27 @@ export class PharmaciesComponent implements OnInit, OnDestroy {
     });
 
     this.ref.onClose.subscribe((response) => {
-      if(response == undefined){
+      if (response == undefined) {
         return;
       }
       if (response && response.status == true) {
         this.getAllPharmacies();
-        this.messageService.add({  key:'tl', severity: 'success', summary: 'Success', detail: response['message'] });
+        this.messageService.add({ key: 'tl', severity: 'success', summary: 'Success', detail: response['message'] });
 
       } else {
-        this.messageService.add({  key:'tl', severity: 'error', summary: 'Failed', detail: response['error']['message'] });
+        this.messageService.add({ key: 'tl', severity: 'error', summary: 'Failed', detail: response['error']['message'] });
 
       }
     });
+  }
+  currentPage: number = 0;
+  totalRecords: number = 0;
+  pageSize: number = 10;
+  onPageChange(event: any) {
+    this.pageSize = event.rows;
+    this.currentPage = event.page;
+    console.log(this.pageSize);
+    console.log(this.currentPage);
+    this.getAllPharmacies(this.pageSize * this.currentPage, this.pageSize);
   }
 }

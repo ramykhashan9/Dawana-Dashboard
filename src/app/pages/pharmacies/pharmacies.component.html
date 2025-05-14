@@ -11,9 +11,8 @@
 
 <div class="col mt-5">
     <p-table selectionMode="single" *ngIf="pharmacies.length > 0" [dir]="dir" [value]="pharmacies"
-        (sortFunction)="customSort($event)" [customSort]="true" [paginator]="true" [scrollable]="false"
-        scrollWidth="800px" [rows]="8" [showCurrentPageReport]="true" [tableStyle]="{ 'min-width': '50rem' }"
-        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
+        (sortFunction)="customSort($event)" [customSort]="true" [scrollable]="true" scrollWidth="800px"
+        [tableStyle]="{ 'min-width': '50rem' }">
         <ng-template pTemplate="header" let-columns>
             <tr>
                 <th pSortableColumn="id" style="min-width: 230px;" *ngFor="let head of headers">
@@ -33,6 +32,7 @@
 
                 <td [class]="getStatusCalss(pharmacies.status)">{{pharmacies.status??"Not Provider"}}</td>
                 <td>{{pharmacies.pharmacy_type}}</td>
+                <td>{{pharmacies.governorate.name_ar}}</td>
                 <td>{{pharmacies.createDateTime|date}}</td>
                 <td>{{pharmacies.createdBy??"Not Provider"}}</td>
 
@@ -41,42 +41,44 @@
                         <button class="py-2 mx-3"
                             style="background-color:green; color: #fff;  border-radius:5px; min-width: 145px; border: green; "
                             (click)="acceptRejectedPharmacy(pharmacies.id,'approved')"
-                            type="button">{{'ACCEPT'|translate}} <span class="pi pi-pen-to-square"></span></button>
+                            type="button">{{'ACCEPT'|translate}} </button>
                     </span>
                     <span *ngIf="pharmacies.status=='pending'">
                         <button class="py-2 "
                             style="background-color:red; color: #fff;  border-radius:5px; min-width: 145px; border: red; "
                             (click)="acceptRejectedPharmacy(pharmacies.id,'rejected')"
-                            type="button">{{'REJECT'|translate}} <span class="pi pi-pen-to-square"></span></button>
+                            type="button">{{'REJECT'|translate}} </button>
 
                     </span>
                     <span class="mx-3">
                         <button class="py-2 "
                             style="background-color: #205692; border: none; color: #fff;  border-radius:5px; min-width: 145px;  "
-                            (click)="pharmacyDetails(pharmacies)" type="button">{{'DETAILS'|translate}} <span
-                                class="pi pi-pen-to-square"></span></button>
+                            (click)="pharmacyDetails(pharmacies)" type="button">{{'DETAILS'|translate}}</button>
                     </span>
 
                     <span class="mx-3">
                         <button class="py-2 "
                             style="background-color: #205692; border: none; color: #fff;  border-radius:5px; min-width: 145px;  "
-                           (click)="uploadDipensingLetter(pharmacies.id)"  type="button">{{'UPLOADDOC'|translate}} <span class="pi pi-pen-to-square"></span></button>
+                            (click)="uploadDipensingLetter(pharmacies.id)" type="button">{{'UPLOADDOC'|translate}}
+                        </button>
                     </span> <span class="mx-3">
                         <button class="py-2 "
                             style="background-color: #205692; border: none; color: #fff;  border-radius:5px; min-width: 145px;  "
-                            (click)="assignToInspector(pharmacies.id)" type="button">{{'ASSIGNTO'|translate}} <span
-                                class="pi pi-pen-to-square"></span></button>
+                            (click)="assignToInspector(pharmacies.id)"
+                            type="button">{{'ASSIGNTOINSPECTOR'|translate}}</button>
                     </span>
                 </td>
             </tr>
         </ng-template>
-        <ng-template pTemplate="paginatorleft">
+        <!-- <ng-template pTemplate="paginatorleft">
             <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
         </ng-template>
         <ng-template pTemplate="paginatorright">
             <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
-        </ng-template>
+        </ng-template> -->
     </p-table>
+    <p-paginator *ngIf="pharmacies.length > 0" (onPageChange)="onPageChange($event)" [rows]="pageSize"
+        [totalRecords]="totalRecords" [rowsPerPageOptions]="[5,10, 15,20]" />
     <p-card *ngIf="pharmacies.length == 0" class="d-flex justify-content-center rounded">
         <h4 class="mx-5 my-3">{{'NOPHARMACIESFOUND'| translate}}</h4>
     </p-card>

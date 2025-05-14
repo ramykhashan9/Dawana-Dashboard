@@ -8,7 +8,7 @@ import { Config } from '../config';
 export class AdminService {
   constructor(private http: HttpClient, private config: Config) { }
   HostUrl = this.config.ApiUrl + "dawana-service/api/v1/admin";
-  getAllAdmins(skip:number=0,take:number=10) {
+  getAllAdmins(skip:number=0,take:number=5) {
     return this.http.get<any>(`${this.HostUrl}/get-all-admins/${skip}/${take}`);
   }
   create(addForm: any) {

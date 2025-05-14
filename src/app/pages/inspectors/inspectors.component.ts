@@ -58,8 +58,8 @@ export class InspectorsComponent implements OnInit, OnDestroy {
     "NATIONALID",
     "NATIONALIDEXPIRY",
     "CREATEDDATE",
-   "CREATEDBY",
-   "VERIFY",
+    "CREATEDBY",
+    "VERIFY",
 
 
   ]
@@ -70,16 +70,18 @@ export class InspectorsComponent implements OnInit, OnDestroy {
     try {
       const response = this.route.snapshot.data['inspectors'];
       if (response && response.status) {
-        this.inspectors = response.data;
+        this.inspectors = response.data['inspectors'];
+        this.totalRecords = response.data['count'];
       }
     } catch (e) { }
   }
-  getAllInspectors() {
-    let getInspectorsSubscriptions = this.inspectorServices.getAllInspectors().subscribe(
+  getAllInspectors(skip: number = 0, take: number = 10) {
+    let getInspectorsSubscriptions = this.inspectorServices.getAllInspectors(skip, take).subscribe(
       (res) => {
-        this.inspectors = res['data'];
-      }, () => {
-
+        this.inspectors = res['data']['inspectors'];
+        this.totalRecords = res['data']['count'];
+      }, (error) => {
+        console.log(error);
       });
     this.subscriptions.add(getInspectorsSubscriptions);
   }
@@ -96,10 +98,10 @@ export class InspectorsComponent implements OnInit, OnDestroy {
     this.ref.onClose.subscribe((response) => {
       if (response && response.status == true) {
         this.getAllInspectors();
-        this.messageService.add({  key:'tl', severity: 'success', summary: 'Success', detail: response['message'] });
+        this.messageService.add({ key: 'tl', severity: 'success', summary: 'Success', detail: response['message'] });
 
       } else {
-        this.messageService.add({  key:'tl', severity: 'error', summary: 'Failed', detail: response['error']['message'] });
+        this.messageService.add({ key: 'tl', severity: 'error', summary: 'Failed', detail: response['error']['message'] });
 
       }
       // this.messageService.add({ severity: 'info', summary: 'Filter', detail: "" });
@@ -125,10 +127,10 @@ export class InspectorsComponent implements OnInit, OnDestroy {
     this.ref.onClose.subscribe((response) => {
       if (response && response.status == true) {
         this.getAllInspectors();
-        this.messageService.add({  key:'tl', severity: 'success', summary: 'Success', detail: response['message'] });
+        this.messageService.add({ key: 'tl', severity: 'success', summary: 'Success', detail: response['message'] });
 
       } else {
-        this.messageService.add({  key:'tl', severity: 'error', summary: 'Failed', detail: response['error']['message'] });
+        this.messageService.add({ key: 'tl', severity: 'error', summary: 'Failed', detail: response['error']['message'] });
 
       }
     });
@@ -150,16 +152,26 @@ export class InspectorsComponent implements OnInit, OnDestroy {
     this.ref.onClose.subscribe((response) => {
       if (response && response.status == true) {
         this.getAllInspectors();
-        this.messageService.add({  key:'tl', severity: 'success', summary: 'Success', detail: response['message'] });
+        this.messageService.add({ key: 'tl', severity: 'success', summary: 'Success', detail: response['message'] });
 
       } else {
-        this.messageService.add({  key:'tl', severity: 'error', summary: 'Failed', detail: response['error']['message'] });
+        this.messageService.add({ key: 'tl', severity: 'error', summary: 'Failed', detail: response['error']['message'] });
 
       }
     });
   }
-  camilCase(val){
-   return StringFun.camilCaseMethod(val);
+  camilCase(val) {
+    return StringFun.camilCaseMethod(val);
+  }
+  currentPage: number = 0;
+  totalRecords: number = 0;
+  pageSize: number = 5;
+  onPageChange(event: any) {
+    this.pageSize = event.rows;
+    this.currentPage = event.page;
+    console.log(this.pageSize);
+    console.log(this.currentPage);
+    this.getAllInspectors(this.pageSize * this.currentPage, this.pageSize);
   }
 }
 

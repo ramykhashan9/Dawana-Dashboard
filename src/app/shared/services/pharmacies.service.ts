@@ -10,7 +10,7 @@ export class PharmaciesService {
   constructor(private http: HttpClient, private config: Config) { }
   HostUrl = this.config.ApiUrl + "dawana-service/api/v1/dashboard"
 
-  getAllPharmacies(form: any, skip: number = 0, take: number = 15) {
+  getAllPharmacies(form: any, skip: number = 0, take: number = 10) {
     return this.http.post<any>(`${this.HostUrl}/get-all-pharmacies/${skip}/${take}`, form);
   }
   acceptRejectPharmacy(pharmacyId: number, status: string) {

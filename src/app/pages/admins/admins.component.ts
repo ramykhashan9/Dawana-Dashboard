@@ -65,16 +65,19 @@ export class AdminsComponent implements OnInit, OnDestroy {
     try {
       const response = this.route.snapshot.data['admins'];
       if (response && response.status) {
-        this.admins = response.data;
+        this.admins = response.data['admins'];
+        this.totalRecords = response.data['count']
       }
     } catch (e) { }
   }
-  getAlAdmins() {
-    let getIAdminsSubscriptions = this.adminServices.getAllAdmins().subscribe(
+  getAlAdmins(skip: number = 0, take: number = 5) {
+    let getIAdminsSubscriptions = this.adminServices.getAllAdmins(skip, take).subscribe(
       (res) => {
-        this.admins = res['data'];
-      }, () => {
+        this.admins = res['data']['admins'];
+        this.totalRecords = res['data']['count']
 
+      }, (error) => {
+        console.log(error);
       });
     this.subscriptions.add(getIAdminsSubscriptions);
   }
@@ -90,15 +93,15 @@ export class AdminsComponent implements OnInit, OnDestroy {
       style: { direction: 'rtl', padding: '10px', background: 'white' }
     });
     this.ref.onClose.subscribe((response) => {
-      if(response == undefined){
+      if (response == undefined) {
         return;
       }
       if (response && response.status == true) {
         this.getAlAdmins();
-        this.messageService.add({  key:'tl', severity: 'success', summary: 'Success', detail: response['message'] });
+        this.messageService.add({ key: 'tl', severity: 'success', summary: 'Success', detail: response['message'] });
 
       } else {
-        this.messageService.add({  key:'tl', severity: 'error', summary: 'Failed', detail: response['error']['message'] });
+        this.messageService.add({ key: 'tl', severity: 'error', summary: 'Failed', detail: response['error']['message'] });
 
       }
       // this.messageService.add({ severity: 'info', summary: 'Filter', detail: "" });
@@ -122,19 +125,19 @@ export class AdminsComponent implements OnInit, OnDestroy {
     });
 
     this.ref.onClose.subscribe((response) => {
-      if(response == undefined){
+      if (response == undefined) {
         return;
       }
       if (response && response.status == true) {
         this.getAlAdmins();
-        this.messageService.add({  key:'tl', severity: 'success', summary: 'Success', detail: response['message'] });
+        this.messageService.add({ key: 'tl', severity: 'success', summary: 'Success', detail: response['message'] });
 
       } else {
-        this.messageService.add({  key:'tl', severity: 'error', summary: 'Failed', detail: response['error']['message'] });
+        this.messageService.add({ key: 'tl', severity: 'error', summary: 'Failed', detail: response['error']['message'] });
 
       }
     });
-  } 
+  }
   reAssignAdmin(admin: Admins) {
     this.ref = this.dialogService.open(ReAssignComponent, {
       data: {
@@ -150,15 +153,15 @@ export class AdminsComponent implements OnInit, OnDestroy {
     });
 
     this.ref.onClose.subscribe((response) => {
-      if(response == undefined){
+      if (response == undefined) {
         return;
       }
       if (response && response.status == true) {
         this.getAlAdmins();
-        this.messageService.add({  key:'tl', severity: 'success', summary: 'Success', detail: response['message'] });
+        this.messageService.add({ key: 'tl', severity: 'success', summary: 'Success', detail: response['message'] });
 
       } else {
-        this.messageService.add({  key:'tl', severity: 'error', summary: 'Failed', detail: response['error']['message'] });
+        this.messageService.add({ key: 'tl', severity: 'error', summary: 'Failed', detail: response['error']['message'] });
 
       }
     });
@@ -178,17 +181,27 @@ export class AdminsComponent implements OnInit, OnDestroy {
     });
 
     this.ref.onClose.subscribe((response) => {
-      if(response == undefined){
+      if (response == undefined) {
         return;
       }
       if (response && response.status == true) {
         this.getAlAdmins();
-        this.messageService.add({  key:'tl', severity: 'success', summary: 'Success', detail: response['message'] });
+        this.messageService.add({ key: 'tl', severity: 'success', summary: 'Success', detail: response['message'] });
 
       } else {
-        this.messageService.add({  key:'tl', severity: 'error', summary: 'Failed', detail: response['error']['message'] });
+        this.messageService.add({ key: 'tl', severity: 'error', summary: 'Failed', detail: response['error']['message'] });
 
       }
     });
+  }
+  currentPage: number = 0;
+  totalRecords: number = 0;
+  pageSize: number = 5;
+  onPageChange(event: any) {
+    this.pageSize = event.rows;
+    this.currentPage = event.page;
+    console.log(this.pageSize);
+    console.log(this.currentPage);
+    this.getAlAdmins(this.pageSize * this.currentPage, this.pageSize);
   }
 }

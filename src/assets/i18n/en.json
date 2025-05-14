@@ -211,5 +211,6 @@
   "UPDATEMOBILEVERSION":"Update Mobile Verison",
   "NOVERSIONSFOUND":"No Versions Found",
   "EXPIRYDATE":"Expiry Date",
-  "REASSIGN":"Reassign"
+  "REASSIGN":"Reassign",
+  "ASSIGNTOINSPECTOR":"Assign to inspector"
 }

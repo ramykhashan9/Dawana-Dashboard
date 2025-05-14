@@ -8,8 +8,8 @@ import { Config } from '../config';
 export class InspectorService {
   constructor(private http: HttpClient, private config: Config) { }
   HostUrl = this.config.ApiUrl + "dawana-service/api/v1/Inspector"
-  getAllInspectors() {
-    return this.http.get<any>(`${this.HostUrl}/get-all-inspectors`);
+  getAllInspectors(skip:number=0,take:number=10) {
+    return this.http.get<any>(`${this.HostUrl}/get-all-inspectors/${skip}/${take}`);
   }
   create(addForm: any) {
     return this.http.post<any>(`${this.HostUrl}/create-inspector`, addForm);

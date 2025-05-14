@@ -11,9 +11,9 @@
 
 <div class="col mt-5">
     <p-table selectionMode="single" *ngIf="inspectors.length > 0" [dir]="dir" [value]="inspectors"
-        (sortFunction)="customSort($event)" [customSort]="true" [paginator]="true" [scrollable]="false"
-        scrollWidth="800px" [rows]="8" [showCurrentPageReport]="true" [tableStyle]="{ 'min-width': '50rem' }"
-        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
+        (sortFunction)="customSort($event)" [customSort]="true"  [scrollable]="true"
+        scrollWidth="800px"  [tableStyle]="{ 'min-width': '50rem' }"
+       >
         <ng-template pTemplate="header" let-columns>
             <tr>
                 <th pSortableColumn="id" style="min-width: 230px;" *ngFor="let head of headers">
@@ -51,8 +51,7 @@
                     <span class="mx-3">
                         <button class="py-2 "
                             style="background-color: #205692; border: none; color: #fff;  border-radius:5px; min-width: 145px;  "
-                            (click)="deleteInspector(inspectors.id)" type="button">{{'DELETE'|translate}} <span
-                                class="pi pi-pen-to-square"></span></button>
+                            (click)="deleteInspector(inspectors.id)" type="button">{{'DELETE'|translate}} </button>
                     </span>
                 </td>
             </tr>
@@ -64,6 +63,8 @@
             <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
         </ng-template> -->
     </p-table>
+     <p-paginator *ngIf="inspectors.length > 0" (onPageChange)="onPageChange($event)" [rows]="pageSize"
+            [totalRecords]="totalRecords" [rowsPerPageOptions]="[5,10, 15,20]" />
     <p-card *ngIf="inspectors.length == 0" class="d-flex justify-content-center rounded">
         <h4 class="mx-5 my-3">{{'NOinspectorsFOUND'| translate}}</h4>
     </p-card>

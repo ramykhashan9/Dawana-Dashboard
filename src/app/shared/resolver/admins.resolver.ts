@@ -14,6 +14,6 @@ export class AdminsRedolver implements Resolve<any> {
   resolve(
 
   ): Observable<any> {
-    return this.adminService.getAllAdmins();
+    return this.adminService.getAllAdmins(0,5);
   }
 }
