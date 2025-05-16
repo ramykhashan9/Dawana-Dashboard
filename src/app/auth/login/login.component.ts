@@ -80,7 +80,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           console.log(response);
           this.storage.setUserId(response.data["id"]);
           this.authMessage = response.message;
-          this.messageService.add({  key:'tl', severity: 'success', summary: 'Success', detail: this.authMessage });
+          this.messageService.add({ key: 'tl', severity: 'success', summary: 'Success', detail: this.authMessage });
           this.spinner.hide();
           this.router.navigate(['/dawana/auth/confirm-login']);
         },
@@ -88,7 +88,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.isLoginFailed = true;
           this.spinner.hide();
           this.authMessage = response.error.message;
-          this.messageService.add({  key:'tl', severity: 'error', summary: 'Error', detail: this.authMessage });
+          this.messageService.add({ key: 'tl', severity: 'error', summary: 'Error', detail: this.authMessage });
         }
       );
     this.subscriptions.add(loginSub$);

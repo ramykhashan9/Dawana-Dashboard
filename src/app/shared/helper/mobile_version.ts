@@ -3,6 +3,7 @@ export interface MobileVersion {
     createDateTime: string
     createdBy: any
     lastChangedDateTime: string
+    role: string
     lastChangedBy: any
     AndroidVersion: number
     IosVersion: number

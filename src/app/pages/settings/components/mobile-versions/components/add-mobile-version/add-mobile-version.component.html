@@ -38,6 +38,16 @@
                 </fieldset>
             </div>
         </div>
+        <div class="row">
+            <div class="col-6">
+                <label for="role">{{'ROLE' |translate}}</label>
+                <fieldset class="form-group">
+                    <span class="p-fluid">
+                        <p-dropdown id="role" formControlName="role" [options]="role" optionLabel=""></p-dropdown>
+                    </span>
+                </fieldset>
+            </div>
+        </div>
     </form>
 
     <div class="row" style="width: 100%; position: absolute; bottom: 0; display: flex; justify-content: space-between;">

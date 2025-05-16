@@ -32,7 +32,8 @@ export class MobileVersionsComponent {
     "CREATEDDATE",
     "CREATEDBY",
     "LASTCHANGEDDATE",
-    "LASTCHANGEDBY"
+    "LASTCHANGEDBY",
+    "ROLE"
 
   ]
   ngOnDestroy(): void {
@@ -82,7 +83,7 @@ export class MobileVersionsComponent {
     this.ref = this.dialogService.open(AddMobileVersionComponent, {
       header: this.addMobileVersionText,
       width: '700px',
-      height: "400px",
+      height: "500px",
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
       maximizable: true,
@@ -113,7 +114,7 @@ export class MobileVersionsComponent {
       },
       header: this.editMobileVesionText,
       width: '700px',
-      height: "400px",
+      height: "500px",
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
       maximizable: true,

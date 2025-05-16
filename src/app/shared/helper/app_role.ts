@@ -1,0 +1,1 @@
+export const APPROLE = ['owner', 'manager', 'pharmacist', "inspector"]; 

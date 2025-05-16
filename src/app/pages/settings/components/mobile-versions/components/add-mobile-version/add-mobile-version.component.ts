@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Subscription } from 'rxjs';
+import { APPROLE } from 'src/app/shared/helper/app_role';
 import { STATUS } from 'src/app/shared/helper/versions_status';
 import { MobileVersionService } from 'src/app/shared/services/mobile-version.service';
 
@@ -13,6 +14,7 @@ import { MobileVersionService } from 'src/app/shared/services/mobile-version.ser
 })
 export class AddMobileVersionComponent implements OnInit, OnDestroy {
   status = STATUS;
+  role = APPROLE;
   subscription: Subscription = new Subscription();
   addVersionGroup: FormGroup;
   StringFun: any;
@@ -30,6 +32,7 @@ export class AddMobileVersionComponent implements OnInit, OnDestroy {
       IosVersion: new FormControl<number>(null, [Validators.required]),
       AndroidStatus: new FormControl<string>(null, [Validators.required]),
       IosStatus: new FormControl<string>(null, [Validators.required]),
+      role: new FormControl<string>(null, [Validators.required]),
     });
   }
 
@@ -47,6 +50,7 @@ export class AddMobileVersionComponent implements OnInit, OnDestroy {
       "IosVersion": this.addVersionGroup.value.IosVersion,
       "AndroidStatus": this.addVersionGroup.value.AndroidStatus == 'true' ? true : false,
       "IosStatus": this.addVersionGroup.value.IosStatus == "true" ? true : false,
+      "role": this.addVersionGroup.value.role ,
     }
     ).subscribe(
       (res) => {
